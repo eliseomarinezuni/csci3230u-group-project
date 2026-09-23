@@ -29,19 +29,3 @@ Also drop a marker where the code lives: `// AI-assisted - see AI-USAGE.md #<n>`
 ---
 
 ## Log
-
-<!-- Entries go below, newest last. Example: -->
-
-### #1 - Generate a price-formatting helper
-- **Date:** 2026-03-30
-- **Member:** Jane Doe
-- **Tool / model:** free-tier assistant
-- **Files:** `src/utils/format.js`
-- **Prompt (verbatim):**
-
-  ```
-  Write a JavaScript function formatPrice(cents) that returns a CAD string like "$12.50".
-  ```
-
-- **What it produced & what I changed:** Kept the logic; renamed the parameter to match
-  our code and added a test. Verified the rounding on a few values.
