@@ -5,9 +5,13 @@ Team Name: Notflix
 
 Team Members
 Name	Role / Interest
+
 Eliseo	Back-end development 
+
 Zach    Front-end development
+
 Andy    API Integration
+
 Julia   Testing / QA
 
 Project Topic
