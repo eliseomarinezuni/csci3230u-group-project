@@ -14,6 +14,8 @@ Andy    API Integration
 
 Julia   Testing / QA
 
+Hayden  Back-end development
+
 Project Topic
 
 Our project will be a movie discovery web application that allows users to search for movies and explore movie information.
