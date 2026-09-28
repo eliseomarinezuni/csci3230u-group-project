@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notflix — Watched</title>
+    <link rel="stylesheet" href="Recommendedstyles.css">
+    <link rel="stylesheet" href="Watchedstyles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo" aria-label="Notflix Home">NOTFLIX</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="Recommended.html" class="nav-link">Recommended</a></li>
+                    <li><a href="Watched.html" class="nav-link active" aria-current="page">Watched</a></li>
+                    <li><a href="#" class="nav-link disabled">Favourites</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h1>Watched Movies</h1>
+            <p class="section-subtitle">Movies you have already watched.</p>
+            <div id="watched-movies" class="movie-grid">
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Notflix</p>
+    </footer>
+
+    <script src="WatchedScript.js"></script>
+</body>
+</html>
