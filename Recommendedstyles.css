@@ -180,66 +180,6 @@ main {
 }
 
 /* ============================================
-   Buttons
-   ============================================ */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.75rem;
-    font-size: clamp(0.9rem, 1vw + 0.2rem, 1.1rem);
-    font-weight: 600;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background-color var(--transition-speed),
-        transform var(--transition-speed),
-        box-shadow var(--transition-speed);
-}
-
-.btn:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 3px;
-}
-
-.btn-primary {
-    background-color: var(--accent-color);
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-}
-
-.btn-favourite {
-    background-color: transparent;
-    color: var(--text-color);
-    border: 2px solid var(--text-muted);
-    padding: 0.55rem 1.25rem;
-    font-size: clamp(0.8rem, 0.9vw + 0.2rem, 0.95rem);
-    width: 100%;
-}
-
-.btn-favourite:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
-
-.btn-favourite.is-favourite {
-    background-color: var(--accent-green);
-    border-color: var(--accent-green);
-    color: #000;
-}
-
-.btn-favourite.is-favourite:hover {
-    background-color: #38b85a;
-    border-color: #38b85a;
-}
-
-/* ============================================
    Features Section (Home page)
    ============================================ */
 .features {
@@ -307,144 +247,54 @@ main {
     gap: clamp(1rem, 2vw, 1.75rem);
 }
 
-/* ============================================
-   Movie Card
-   ============================================ */
+/*MOVIE CARDS*/
 .movie-card {
     background-color: var(--surface-color);
+
     border-radius: var(--border-radius);
+
     overflow: hidden;
+
     box-shadow: var(--shadow);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    display: flex;
-    flex-direction: column;
+
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .movie-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.6);
 }
 
-/* Poster image */
-.movie-card__image-wrapper {
-    position: relative;
-    aspect-ratio: 2 / 3;
-    overflow: hidden;
-    background-color: #111;
-}
-
-.movie-card__image {
-    position: relative;
-    z-index: 2;
-    display: block;
+/*MOVIE IMAGES*/
+.movie-card img {
     width: 100%;
-    height: 100%;
+    height: 25rem;
+
     object-fit: cover;
-    transition: transform var(--transition-speed), opacity var(--transition-speed);
+
+    display: block;
 }
 
-.movie-card:hover .movie-card__image {
-    transform: scale(1.05);
-}
-
-/* Placeholder fallback shown when the image fails to load */
-.movie-card__placeholder {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #1c1c28 0%, #2a2a3e 100%);
-    color: var(--text-muted);
-    font-size: clamp(0.85rem, 1vw, 1rem);
-    text-align: center;
+/*MOVIE INFO*/
+.movie-info {
     padding: 1rem;
-    pointer-events: none;
 }
 
-/* Card body: always-visible info */
-.movie-card__body {
-    padding: clamp(0.75rem, 1.5vw, 1.25rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    flex: 1;
+.movie-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
 }
 
-.movie-card__title {
-    font-size: clamp(1rem, 1.1vw + 0.25rem, 1.2rem);
-    font-weight: 700;
-}
-
-.movie-card__meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    font-size: clamp(0.8rem, 0.85vw + 0.15rem, 0.95rem);
+.movie-info p {
     color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
-.movie-card__rating {
-    color: #f5c518;
-    font-weight: 600;
+.movie-rating {
+    color: #f5c518 !important;
+    font-weight: bold;
 }
 
-/* Toggle button */
-.movie-card__toggle {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 0.5rem clamp(0.75rem, 1.5vw, 1.25rem);
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    width: 100%;
-    transition: color var(--transition-speed), background-color var(--transition-speed);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.movie-card__toggle:hover {
-    color: var(--text-color);
-    background-color: var(--surface-hover);
-}
-
-.movie-card__toggle:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: -2px;
-}
-
-.movie-card__toggle-icon {
-    display: inline-block;
-    transition: transform var(--transition-speed);
-}
-
-.movie-card__toggle[aria-expanded="true"] .movie-card__toggle-icon {
-    transform: rotate(180deg);
-}
-
-/* Expandable section */
-.movie-card__details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
-    padding: 0 clamp(0.75rem, 1.5vw, 1.25rem);
-}
-
-.movie-card__details.is-open {
-    max-height: 25rem;
-    padding: 0.75rem clamp(0.75rem, 1.5vw, 1.25rem) clamp(0.75rem, 1.5vw, 1.25rem);
-}
-
-.movie-card__description {
-    font-size: clamp(0.85rem, 0.9vw + 0.15rem, 0.95rem);
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
 
 /* ============================================
    Footer
