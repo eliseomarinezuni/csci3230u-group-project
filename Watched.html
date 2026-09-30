@@ -4,38 +4,258 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notflix — Watched</title>
+
     <link rel="stylesheet" href="Recommendedstyles.css">
     <link rel="stylesheet" href="Watchedstyles.css">
 </head>
+
 <body>
 
     <header class="site-header">
         <div class="header-inner">
-            <a href="index.html" class="logo" aria-label="Notflix Home">NOTFLIX</a>
+
+            <a href="index.html" class="logo" aria-label="Notflix Home">
+                NOTFLIX
+            </a>
+
             <nav aria-label="Main navigation">
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="Recommended.html" class="nav-link">Recommended</a></li>
-                    <li><a href="Watched.html" class="nav-link active" aria-current="page">Watched</a></li>
-                    <li><a href="#" class="nav-link disabled">Favourites</a></li>
+                    <li>
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="Recommended.html" class="nav-link">Recommended</a>
+                    </li>
+
+                    <li>
+                        <a href="Watched.html"
+                           class="nav-link active"
+                           aria-current="page">
+                            Watched
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="Genre.html" class="nav-link">Genre</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-link disabled">Favourites</a>
+                    </li>
                 </ul>
             </nav>
+
         </div>
     </header>
 
+
     <main>
+
         <section class="page-section">
+
             <h1>Watched Movies</h1>
-            <p class="section-subtitle">Movies you have already watched.</p>
-            <div id="watched-movies" class="movie-grid">
+
+            <p class="section-subtitle">
+                Movies you have already watched.
+            </p>
+
+
+            <div class="movie-grid">
+
+                <!-- Inception -->
+                <article class="movie-card">
+
+                    <div class="movie-card__image-wrapper">
+
+                        <img
+                            class="movie-card__image"
+                            src="images/Inception.jpeg"
+                            alt="Poster for Inception"
+                        >
+
+                        <span class="movie-card__badge">
+                            ✓ Watched
+                        </span>
+
+                    </div>
+
+                    <div class="movie-card__body">
+
+                        <h2 class="movie-card__title">
+                            Inception
+                        </h2>
+
+                        <div class="movie-card__meta">
+
+                            <span
+                                class="movie-card__rating"
+                                aria-label="Rating 8.8 out of 10">
+                                ★ 8.8
+                            </span>
+
+                            <span>
+                                Sci-Fi / Thriller
+                            </span>
+
+                        </div>
+
+                        <p class="movie-card__watched-date">
+                            Watched on September 12, 2026
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- The Matrix -->
+                <article class="movie-card">
+
+                    <div class="movie-card__image-wrapper">
+
+                        <img
+                            class="movie-card__image"
+                            src="images/Matrix.jpeg"
+                            alt="Poster for The Matrix"
+                        >
+
+                        <span class="movie-card__badge">
+                            ✓ Watched
+                        </span>
+
+                    </div>
+
+                    <div class="movie-card__body">
+
+                        <h2 class="movie-card__title">
+                            The Matrix
+                        </h2>
+
+                        <div class="movie-card__meta">
+
+                            <span
+                                class="movie-card__rating"
+                                aria-label="Rating 8.7 out of 10">
+                                ★ 8.7
+                            </span>
+
+                            <span>
+                                Sci-Fi / Action
+                            </span>
+
+                        </div>
+
+                        <p class="movie-card__watched-date">
+                            Watched on September 5, 2026
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Spider-Man -->
+                <article class="movie-card">
+
+                    <div class="movie-card__image-wrapper">
+
+                        <img
+                            class="movie-card__image"
+                            src="images/IntoTheSpiderverse.jpeg"
+                            alt="Poster for Spider-Man: Into the Spider-Verse"
+                        >
+
+                        <span class="movie-card__badge">
+                            ✓ Watched
+                        </span>
+
+                    </div>
+
+                    <div class="movie-card__body">
+
+                        <h2 class="movie-card__title">
+                            Spider-Man: Into the Spider-Verse
+                        </h2>
+
+                        <div class="movie-card__meta">
+
+                            <span
+                                class="movie-card__rating"
+                                aria-label="Rating 8.4 out of 10">
+                                ★ 8.4
+                            </span>
+
+                            <span>
+                                Animation / Action
+                            </span>
+
+                        </div>
+
+                        <p class="movie-card__watched-date">
+                            Watched on August 28, 2026
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Mad Max -->
+                <article class="movie-card">
+
+                    <div class="movie-card__image-wrapper">
+
+                        <img
+                            class="movie-card__image"
+                            src="images/MadMax.jpeg"
+                            alt="Poster for Mad Max: Fury Road"
+                        >
+
+                        <span class="movie-card__badge">
+                            ✓ Watched
+                        </span>
+
+                    </div>
+
+                    <div class="movie-card__body">
+
+                        <h2 class="movie-card__title">
+                            Mad Max: Fury Road
+                        </h2>
+
+                        <div class="movie-card__meta">
+
+                            <span
+                                class="movie-card__rating"
+                                aria-label="Rating 8.1 out of 10">
+                                ★ 8.1
+                            </span>
+
+                            <span>
+                                Action / Adventure
+                            </span>
+
+                        </div>
+
+                        <p class="movie-card__watched-date">
+                            Watched on August 19, 2026
+                        </p>
+
+                    </div>
+
+                </article>
+
             </div>
+
         </section>
+
     </main>
+
 
     <footer class="site-footer">
         <p>&copy; 2026 Notflix</p>
     </footer>
 
-    <script src="WatchedScript.js"></script>
 </body>
 </html>
