@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Recommendedstyles.css">
+    <link rel="stylesheet" href="Favourites.css">
+    <title>Notflix — Favourites</title>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo" aria-label="Notflix Home">NOTFLIX</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="Recommended.html" class="nav-link">Recommended</a></li>
+                    <li><a href="Watched.html" class="nav-link">Watched</a></li>
+                    <li><a href="Genre.html" class="nav-link">Genre</a></li>
+                    <li><a href="Favourites.html" class="nav-link active" aria-current="page">Favourites</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h1>Favourited Movies</h1>
+            <div id="favourited-movies" class="movie-grid">
+                <article class="movie-card" data-movie-id="1">
+                    <div class="movie-card__image-wrapper">
+                        <img class="movie-card__image" src="images/Inception.jpeg" alt="Poster for Inception" style="display: block;">
+                        <div class="movie-card__placeholder" aria-hidden="true" style="display: none;">Inception</div>
+                    </div>
+
+                    <div class="movie-card__body">
+                        <h2 class="movie-card__title">Inception</h2>
+                        <div class="movie-card__meta">
+                            <span class="movie-card__rating" aria-label="Rating 8.8 out of 10">★ 8.8</span>
+                            <span>Sci-Fi / Thriller</span>
+                        </div>
+                    </div>
+
+                    <button class="movie-card__toggle" aria-expanded="true" aria-controls="details-1">
+                        <span class="movie-card__toggle-icon" aria-hidden="true">▼</span>
+                        <span>More info</span>
+                    </button>
+
+                    <div class="movie-card__details is-open" id="details-1" role="region" aria-label="Details for Inception">
+                        <p class="movie-card__description">A skilled thief who steals secrets through shared dreams is given an impossible task: planting an idea inside the mind of a powerful businessman. As the layers of dreams become increasingly dangerous, he must confront the past he has tried to escape.</p>
+                        <button class="btn btn-favourite " data-movie-id="1" aria-pressed="true">
+                            - Remove from Favourites
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Notflix</p>
+    </footer>
+
+</body>
+</html>
