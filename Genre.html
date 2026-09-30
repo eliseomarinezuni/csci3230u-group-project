@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Recommendedstyles.css">
+    <link rel="stylesheet" href="Genre.css">
+    <title>Notflix — Search</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo" aria-label="Notflix Home">NOTFLIX</a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="Recommended.html" class="nav-link" aria-current="page">Recommended</a></li>
+                    <li><a href="#" class="nav-link disabled">Favourites</a></li>
+                    <li><a href="Genre.html" class="nav-link active" >Genre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h1>Browse by Genre</h1>
+            <div class="genre-buttons">
+                <button class="genre-btn active" data-genre="all"> All </button>
+                <button class="genre-btn" data-genre="Sci-Fi"> Sci-Fi </button>
+                <button class="genre-btn" data-genre="Action"> Action </button>
+                <button class="genre-btn" data-genre="Adventure"> Adventure </button>
+                <button class="genre-btn" data-genre="Animation"> Animation </button>
+                <button class="genre-btn" data-genre="Thriller"> Thriller </button>
+            </div>
+
+            <div class="movie-grid">
+                <div class="movie-card" data-genre="Sci-Fi Thriller">
+                    <img src="images/Inception.jpeg" alt="Inception">
+                    <h2>Inception</h2>
+                    <p>Sci-Fi / Thriller</p>
+                </div>
+                <div class="movie-card" data-genre="Sci-Fi Adventure">
+                    <img src="images/Interstellar.jpeg" alt="Interstellar">
+                    <h2>Interstellar</h2>
+                    <p>Sci-Fi / Adventure</p>
+                </div>
+                <div class="movie-card" data-genre="Action Adventure">
+                    <img src="images/MadMax.jpeg" alt="Mad Max: Fury Road">
+                    <h2>Mad Max: Fury Road</h2>
+                    <p>Action / Adventure</p>
+                </div>
+            </div>
+    </main>
+    <script src="Genre.js"></script>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Notflix</p>
+    </footer>
+    
+</body>
+</html>

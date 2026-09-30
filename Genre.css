@@ -1,0 +1,110 @@
+:root {
+    --bg-color: #0d0d0d;
+    --surface-color: #1a1a2e;
+    --surface-hover: #22223a;
+    --text-color: #e8e8e8;
+    --text-muted: #a0a0b0;
+    --accent-color: #e50914;
+    --accent-hover: #ff1a26;
+    --border-radius: 0.75rem;
+    --shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+/*HEADER*/
+.site-header {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow);
+}
+
+/*TITLE*/
+    .page-section {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: clamp(2rem, 4vh, 3rem) clamp(1rem, 5vw, 3rem);
+    }
+
+    .page-section h1 {
+        font-size: clamp(1.75rem, 3vw + 0.25rem, 2.75rem);
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+
+/*BUTTONS*/
+.genre-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+}
+
+.genre-btn {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid #555;
+    border-radius: 999px;
+    padding: 0.55rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.genre-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.genre-btn.active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+/*MOVIE CARDS*/
+.movie-card {
+    background-color: var(--surface-color);
+
+    border-radius: var(--border-radius);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.6);
+}
+
+/*MOVIE IMAGES*/
+.movie-card img {
+    width: 100%;
+    height: 25rem;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/*MOVIE INFO*/
+.movie-info {
+    padding: 1rem;
+}
+
+.movie-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+}
+
+.movie-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.movie-rating {
+    color: #f5c518 !important;
+    font-weight: bold;
+}
+
