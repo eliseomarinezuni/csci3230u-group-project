@@ -1,0 +1,34 @@
+.watched-page .watched-poster {
+  position: relative;
+}
+
+.watched-page .watched-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--accent-green);
+  color: var(--bg-color);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+
+.watched-page .watched-body {
+  padding: 1rem;
+}
+
+.watched-page .movie-card__title {
+  margin-bottom: 0.4rem;
+}
+
+.watched-page .movie-card__genres,
+.watched-page .watched-date {
+  color: var(--text-muted);
+}
+
+.watched-page .watched-date {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
