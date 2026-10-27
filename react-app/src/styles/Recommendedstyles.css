@@ -1,0 +1,325 @@
+/* ============================================
+   Variables
+   ============================================ */
+:root {
+    --bg-color: #0d0d0d;
+    --surface-color: #1a1a2e;
+    --surface-hover: #22223a;
+    --text-color: #e8e8e8;
+    --text-muted: #a0a0b0;
+    --accent-color: #e50914;
+    --accent-hover: #ff1a26;
+    --accent-green: #46d369;
+    --border-radius: 0.75rem;
+    --border-radius-sm: 0.375rem;
+    --shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 0.5rem 2rem rgba(0, 0, 0, 0.6);
+    --transition-speed: 0.3s;
+    --max-width: 80rem;
+}
+
+/* ============================================
+   Reset / Base
+   ============================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.site-header {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(1rem, 3vw, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.logo {
+    font-size: clamp(1.4rem, 2vw + 0.5rem, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: var(--accent-color);
+    transition: opacity var(--transition-speed);
+}
+
+.logo:hover {
+    opacity: 0.85;
+}
+
+.logo:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: var(--border-radius-sm);
+}
+
+.nav-list {
+    display: flex;
+    gap: clamp(0.75rem, 2vw, 1.75rem);
+    align-items: center;
+}
+
+.nav-link {
+    font-size: clamp(0.875rem, 1vw + 0.25rem, 1.05rem);
+    font-weight: 500;
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+    transition: color var(--transition-speed), background-color var(--transition-speed);
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.nav-link.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.nav-link.disabled {
+    color: var(--text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+main {
+    flex: 1;
+}
+
+/* ============================================
+   Hero Section (Home page)
+   ============================================ */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 3rem);
+    min-height: 60vh;
+    background: linear-gradient(
+        135deg,
+        var(--surface-color) 0%,
+        var(--bg-color) 100%
+    );
+}
+
+.hero-content {
+    max-width: 40rem;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.accent {
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 1.5vw + 0.25rem, 1.35rem);
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   Features Section (Home page)
+   ============================================ */
+.features {
+    padding: clamp(2rem, 5vh, 4rem) clamp(1rem, 5vw, 3rem);
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+.feature-card {
+    background-color: var(--surface-color);
+    padding: clamp(1.25rem, 2vw, 2rem);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-card h2 {
+    font-size: clamp(1.1rem, 1.2vw + 0.3rem, 1.35rem);
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: clamp(0.875rem, 0.9vw + 0.2rem, 1rem);
+}
+
+/* ============================================
+   Page Section (Recommended page)
+   ============================================ */
+.page-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(2rem, 4vh, 3rem) clamp(1rem, 5vw, 3rem);
+}
+
+.page-section h1 {
+    font-size: clamp(1.75rem, 3vw + 0.25rem, 2.75rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: clamp(0.95rem, 1vw + 0.25rem, 1.15rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* ============================================
+   Movie Grid
+   ============================================ */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+/*MOVIE CARDS*/
+.movie-card {
+    background-color: var(--surface-color);
+
+    border-radius: var(--border-radius);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.6);
+}
+
+/*MOVIE IMAGES*/
+.movie-card img {
+    width: 100%;
+    height: 25rem;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/*MOVIE INFO*/
+.movie-info {
+    padding: 1rem;
+}
+
+.movie-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+}
+
+.movie-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.movie-rating {
+    color: #f5c518 !important;
+    font-weight: bold;
+}
+
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer {
+    background-color: var(--surface-color);
+    text-align: center;
+    padding: clamp(1.25rem, 3vh, 2rem) clamp(1rem, 5vw, 2rem);
+    font-size: clamp(0.8rem, 0.85vw + 0.15rem, 0.9rem);
+    color: var(--text-muted);
+    margin-top: auto;
+}
+
+.site-footer p + p {
+    margin-top: 0.25rem;
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+
+/* Stack navigation below logo on narrow screens */
+@media (max-width: 30rem) {
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
