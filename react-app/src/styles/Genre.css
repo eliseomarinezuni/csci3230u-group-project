@@ -1,0 +1,54 @@
+.genre-page .genre-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem; 
+    margin-bottom: 1.5rem;
+}
+
+.genre-page .genre-btn {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid #555;
+  border-radius: 999px;
+  padding: 0.55rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.genre-page .genre-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.genre-page .genre-btn.active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.genre-page .genre-count {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.genre-page .movie-card__title,
+.genre-page .movie-card__genres,
+.genre-page .movie-card__rating {
+  padding: 0 1rem;
+}
+
+.genre-page .movie-card__title {
+  padding-top: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.genre-page .movie-card__genres {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.genre-page .movie-card__rating {
+  padding-bottom: 1rem;
+}

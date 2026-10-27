@@ -4,6 +4,7 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Recommended from './pages/Recommended.jsx'
 import Watched from './pages/Watched.jsx'
+import Genre from './pages/Genre.jsx'
 
 function getPage() {
   switch (window.location.hash) {
@@ -11,6 +12,8 @@ function getPage() {
       return 'recommended'
     case '#/watched':
       return 'watched'
+    case '#/genre': 
+      return 'genre'
     default:
       return 'home'
   }
@@ -20,6 +23,7 @@ const pageTitles = {
   home: 'Notflix - Home',
   recommended: 'Notflix - Recommended',
   watched: 'Notflix - Watched',
+  genre: 'Notflix - Genre',
 }
 
 export default function App() {
@@ -48,6 +52,7 @@ export default function App() {
       {page === 'home' && <Home />}
       {page === 'recommended' && <Recommended />}
       {page === 'watched' && <Watched />}
+       {page === 'genre' && <Genre />}
 
       <Footer />
     </>

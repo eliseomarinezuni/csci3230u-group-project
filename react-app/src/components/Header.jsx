@@ -45,7 +45,10 @@ export default function Header({ page }) {
             </li>
 
             <li>
-              <a href="/prototype/Genre.html" className="nav-link">
+              <a href="#/genre"
+              className={`nav-link${page === 'genre' ? ' active' : ''}`}
+              aria-current={page === 'genre' ? 'page' : undefined}
+              >
                 Genre
               </a>
             </li>

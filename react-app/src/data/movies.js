@@ -23,6 +23,22 @@ const movies = [
     rating: 8.1,
     description: 'In a desert wasteland, Max joins Furiosa as she helps a group escape a ruthless ruler. Their flight becomes a chase across the desert in heavily armed vehicles.',
   },
+  {
+    id: 'blade-runner-2049',
+    title: 'Blade Runner 2049',
+    poster: '/prototype/images/Bladerunner.jpeg',
+    genres: ['Sci-Fi', 'Thriller'],
+    rating: 8.0,
+    description: 'A replicant officer in a future Los Angeles uncovers a long-buried secret that could upend society. The discovery sends him searching for a former blade runner who has been missing for decades.',
+  },
+  {
+    id: 'spider-man-into-the-spider-verse',
+    title: 'Spider-Man: Into the Spider-Verse',
+    poster: '/prototype/images/IntoTheSpiderverse.jpeg',
+    genres: ['Animation', 'Action'],
+    rating: 8.4,
+    description: 'Brooklyn teen Miles Morales gains spider powers and is pulled into a crisis that brings Spider-People from other dimensions into his world. Together they have to stop a threat to every reality.',
+  },
 ]
 
 export default movies
