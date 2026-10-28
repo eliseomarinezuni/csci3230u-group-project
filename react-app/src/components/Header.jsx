@@ -1,4 +1,6 @@
-export default function Header({ page }) {
+import SearchBar from './SearchBar.jsx'
+
+export default function Header({ page, searchQuery }) {
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -54,6 +56,8 @@ export default function Header({ page }) {
             </li>
           </ul>
         </nav>
+
+        <SearchBar key={searchQuery} initialQuery={searchQuery} />
       </div>
     </header>
   )

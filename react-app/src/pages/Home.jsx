@@ -1,3 +1,5 @@
+import SearchBar from '../components/SearchBar.jsx'
+
 export default function Home() {
   return (
     <main>
@@ -5,6 +7,7 @@ export default function Home() {
         <div className="hero-content">
           <h1>Welcome to <span className="accent">Notflix</span></h1>
           <p className="hero-subtitle">Discover movies you might want to watch.</p>
+          <SearchBar variant="home" />
           <a href="#/recommended" className="btn btn-primary">Browse Recommended Movies</a>
         </div>
       </section>
