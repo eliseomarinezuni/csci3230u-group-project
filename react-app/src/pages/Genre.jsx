@@ -8,7 +8,7 @@ const genres = ['All', 'Action', 'Adventure', 'Animation', 'Sci-Fi', 'Thriller']
 
 export default function Genre(){
     const [selectedGenre, setSelectedGenre] = useState('All') 
-    {/*default genre*/}
+    {/*default genre 'all', tells react*/}
 
     const visibleMovies = movies.filter(
         (movie) => selectedGenre === 'All' || movie.genres.includes(selectedGenre),
