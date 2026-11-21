@@ -1,19 +1,7 @@
-.watched-page .watched-poster {
-  position: relative;
-}
-
-.watched-page .watched-badge {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--border-radius-sm);
-  background-color: var(--accent-green);
-  color: var(--bg-color);
-  font-size: 0.85rem;
-  font-weight: 700;
-  box-shadow: var(--shadow);
-}
+.watched-page .watched-body, /* //AI ASSISTED */
+.watched-page .watched-date { /* //AI ASSISTED */
+  display: block; /* //AI ASSISTED */
+} /* //AI ASSISTED */
 
 .watched-page .watched-body {
   padding: 1rem;

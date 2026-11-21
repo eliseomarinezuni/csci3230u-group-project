@@ -44,3 +44,17 @@ Also drop a marker where the code lives: `// AI-assisted - see AI-USAGE.md #<n>`
 - **What it produced & what I changed:** I asked ChatGPT to help integrate TMDB into Notflix and test it through movie search. It produced code that connects our existing search to TMDB through a Netlify Function. I kept the implementation, added my token to a local `.env` file, and verified that movie search returned live TMDB results.
 
 ---
+
+### #2 - Movie details pop-up and Watched button
+
+- **Date:** 2026-11-21
+- **Member:** Eliseo Marinez
+- **Tool / model:** ChatGPT (Codex, GPT-6)
+- **Files:** `react-app/src/App.jsx`, `react-app/src/components/MovieCard.jsx`, `react-app/src/components/MovieDetails.jsx`, `react-app/src/components/WatchedButton.jsx`, `react-app/src/components/WatchedMoviesContext.jsx`, `react-app/src/data/movies.js`, `react-app/src/pages/Watched.jsx`, `react-app/src/styles/MovieDetails.css`, `react-app/src/styles/Watchedstyles.css`, `react-app/src/styles/root.css`
+- **Prompt (verbatim):**
+
+  ```text
+  Give me the code to implement a movie details pop up when clicking on a movie. There should also be a watched button that is implemented, when the watch button is pressed it is added to the watched section. If someone wants to remove a movie from watched provide a removal confirmation pop-up.
+  ```
+
+- **What it produced & what I changed:** The AI added a shared movie details pop-up and a Watched button that saves the list in the browser. I asked it to move the button below the poster and add a confirmation before removing a movie, then kept the revised code. Local testing confirmed that the pop-up works across all four movie pages and that changes to the Watched list persist after refreshing.

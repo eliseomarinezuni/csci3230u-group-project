@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
+import { WatchedMoviesProvider } from './components/WatchedMoviesContext.jsx' //AI ASSISTED
 import Home from './pages/Home.jsx'
 import Recommended from './pages/Recommended.jsx'
 import Watched from './pages/Watched.jsx'
@@ -53,7 +54,7 @@ export default function App() {
   }, [page])
 
   return (
-    <>
+    <WatchedMoviesProvider>{/* //AI ASSISTED */}
       <Header page={page} searchQuery={page === 'search' ? searchQuery : ''} />
 
       {page === 'home' && <Home />}
@@ -63,6 +64,6 @@ export default function App() {
       {page === 'search' && <Search query={searchQuery} />}
 
       <Footer />
-    </>
+    </WatchedMoviesProvider> //AI ASSISTED
   )
 }

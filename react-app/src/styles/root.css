@@ -43,8 +43,113 @@
   font-weight: bold;
 }
 
-.movie-card__description {
-  padding: 1rem;
-  border-top: 1px solid var(--surface-hover);
-  color: var(--text-muted);
-}
+.movie-card__actions { /* //AI ASSISTED */
+  display: flex; /* //AI ASSISTED */
+  justify-content: flex-end; /* //AI ASSISTED */
+  padding: 0.75rem 1rem; /* //AI ASSISTED */
+  border-top: 1px solid var(--surface-hover); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-toggle { /* //AI ASSISTED */
+  display: inline-flex; /* //AI ASSISTED */
+  min-height: 2.75rem; /* //AI ASSISTED */
+  align-items: center; /* //AI ASSISTED */
+  gap: 0.45rem; /* //AI ASSISTED */
+  padding: 0.35rem 0.8rem 0.35rem 0.55rem; /* //AI ASSISTED */
+  border: 1px solid var(--surface-hover); /* //AI ASSISTED */
+  border-radius: 999px; /* //AI ASSISTED */
+  background: var(--surface-hover); /* //AI ASSISTED */
+  color: var(--text-color); /* //AI ASSISTED */
+  font: inherit; /* //AI ASSISTED */
+  font-size: 0.875rem; /* //AI ASSISTED */
+  font-weight: 600; /* //AI ASSISTED */
+  line-height: 1; /* //AI ASSISTED */
+  cursor: pointer; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-toggle:hover { /* //AI ASSISTED */
+  border-color: var(--text-muted); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-toggle[aria-pressed="true"] { /* //AI ASSISTED */
+  border-color: color-mix(in srgb, var(--accent-green) 42%, transparent); /* //AI ASSISTED */
+  background: color-mix(in srgb, var(--accent-green) 11%, var(--surface-color)); /* //AI ASSISTED */
+  color: var(--accent-green); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-toggle[aria-pressed="true"]:hover { /* //AI ASSISTED */
+  border-color: var(--accent-green); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-toggle__icon { /* //AI ASSISTED */
+  display: grid; /* //AI ASSISTED */
+  width: 1.4rem; /* //AI ASSISTED */
+  height: 1.4rem; /* //AI ASSISTED */
+  place-items: center; /* //AI ASSISTED */
+  border: 1px solid currentColor; /* //AI ASSISTED */
+  border-radius: 50%; /* //AI ASSISTED */
+  font-size: 1rem; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-toggle:focus-visible, /* //AI ASSISTED */
+.watched-confirmation button:focus-visible { /* //AI ASSISTED */
+  outline: 2px solid var(--text-color); /* //AI ASSISTED */
+  outline-offset: 2px; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+html:has(.watched-confirmation[open]) { /* //AI ASSISTED */
+  overflow: hidden; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-confirmation { /* //AI ASSISTED */
+  position: fixed; /* //AI ASSISTED */
+  inset: 0; /* //AI ASSISTED */
+  width: min(25rem, calc(100% - 2rem)); /* //AI ASSISTED */
+  max-height: calc(100dvh - 2rem); /* //AI ASSISTED */
+  margin: auto; /* //AI ASSISTED */
+  padding: clamp(1rem, 5vw, 1.5rem); /* //AI ASSISTED */
+  border: 1px solid var(--surface-hover); /* //AI ASSISTED */
+  border-radius: var(--border-radius); /* //AI ASSISTED */
+  background: var(--surface-color); /* //AI ASSISTED */
+  color: var(--text-color); /* //AI ASSISTED */
+  box-shadow: var(--shadow-lg); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-confirmation::backdrop { /* //AI ASSISTED */
+  background: rgb(0 0 0 / 70%); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-confirmation h2 { /* //AI ASSISTED */
+  font-size: 1.25rem; /* //AI ASSISTED */
+  line-height: 1.35; /* //AI ASSISTED */
+  overflow-wrap: anywhere; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-confirmation__actions { /* //AI ASSISTED */
+  display: flex; /* //AI ASSISTED */
+  flex-wrap: wrap; /* //AI ASSISTED */
+  justify-content: flex-end; /* //AI ASSISTED */
+  gap: 0.75rem; /* //AI ASSISTED */
+  margin-top: 1.25rem; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-confirmation__actions button { /* //AI ASSISTED */
+  min-height: 2.75rem; /* //AI ASSISTED */
+  padding: 0.45rem 0.85rem; /* //AI ASSISTED */
+  border: 1px solid transparent; /* //AI ASSISTED */
+  border-radius: var(--border-radius-sm); /* //AI ASSISTED */
+  background: var(--surface-hover); /* //AI ASSISTED */
+  color: var(--text-color); /* //AI ASSISTED */
+  font: inherit; /* //AI ASSISTED */
+  font-weight: 600; /* //AI ASSISTED */
+  cursor: pointer; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-confirmation__actions button:hover { /* //AI ASSISTED */
+  border-color: var(--text-muted); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.watched-confirmation__actions .watched-confirmation__remove { /* //AI ASSISTED */
+  background: var(--accent-color); /* //AI ASSISTED */
+  color: #fff; /* //AI ASSISTED */
+} /* //AI ASSISTED */
