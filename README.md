@@ -47,6 +47,28 @@ npm run dev
 
 ## Data Source(s)
 
+### Live TMDB movie search
+
+Netlify runs the movie search function at `/api/movies/search?q=Inception`. Set
+`TMDB_READ_TOKEN` to the TMDB API Read Access Token in the Netlify Functions scope
+for each deploy context that needs search. Create a new deploy after changing it.
+
+Pages can import the shared helper without handling credentials:
+
+```js
+import { searchTmdbMovies } from '../data/tmdb.js' //AI ASSISTED
+
+const movies = await searchTmdbMovies('Inception') //AI ASSISTED
+```
+
+Each result includes `id`, `title`, `description`, `releaseDate`, `poster`, `rating`,
+and `genreIds`. Release dates, posters, and ratings can be `null`.
+
+To test the function locally, run `npx netlify-cli dev` from the project root and use
+the URL it prints. Use a linked Netlify project with the variable available to local
+development, or set `TMDB_READ_TOKEN` in a local `.env` file at the project root.
+`npm run dev` runs the React app on its own.
+
 We plan to use The Movie Database (TMDB) API as our main data source.
 
 TMDB provides information about movies and television shows, including:

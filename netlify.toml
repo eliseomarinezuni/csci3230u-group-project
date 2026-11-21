@@ -1,0 +1,8 @@
+[build] # //AI ASSISTED
+  command = "npm run build" # //AI ASSISTED
+  publish = "dist" # //AI ASSISTED
+
+[[redirects]] # //AI ASSISTED
+  from = "/api/movies/search" # //AI ASSISTED
+  to = "/.netlify/functions/tmdb-search" # //AI ASSISTED
+  status = 200 # //AI ASSISTED

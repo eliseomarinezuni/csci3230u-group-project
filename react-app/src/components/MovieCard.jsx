@@ -13,10 +13,12 @@ export default function MovieCard({ movie }) {
         aria-controls={descriptionId}
         onClick={() => setExpanded((previous) => !previous)}
       >
-        <img src={movie.poster} alt="" />
+        {movie.poster && <img src={movie.poster} alt="" /> /* //AI ASSISTED */}
         <span className="movie-card__title">{movie.title}</span>
         <span className="movie-card__genres">{movie.genres.join(' / ')}</span>
-        <span className="movie-card__rating">Rating: {movie.rating.toFixed(1)} / 10</span>
+        <span className="movie-card__rating">{/* //AI ASSISTED */}
+          {movie.rating == null ? 'Rating unavailable' : `Rating: ${movie.rating.toFixed(1)} / 10` /* //AI ASSISTED */}
+        </span>{/* //AI ASSISTED */}
       </button>
       <p id={descriptionId} className="movie-card__description" hidden={!expanded}>
         {movie.description}
