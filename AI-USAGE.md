@@ -30,7 +30,7 @@ Also drop a marker where the code lives: `// AI-assisted - see AI-USAGE.md #<n>`
 
 ## Log
 
-### #N - TMDB movie search integration
+### #1 - TMDB movie search integration
 
 - **Date:** 2026-11-21
 - **Member:** Eliseo Marinez
