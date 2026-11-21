@@ -56,9 +56,9 @@ for each deploy context that needs search. Create a new deploy after changing it
 Pages can import the shared helper without handling credentials:
 
 ```js
-import { searchTmdbMovies } from '../data/tmdb.js' //AI ASSISTED
+import { searchTmdbMovies } from '../data/tmdb.js' 
 
-const movies = await searchTmdbMovies('Inception') //AI ASSISTED
+const movies = await searchTmdbMovies('Inception')
 ```
 
 Each result includes `id`, `title`, `description`, `releaseDate`, `poster`, `rating`,
