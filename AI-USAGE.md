@@ -54,7 +54,7 @@ Also drop a marker where the code lives: `// AI-assisted - see AI-USAGE.md #<n>`
 - **Prompt (verbatim):**
 
   ```text
-  Give me the code to implement a movie details pop up when clicking on a movie. There should also be a watched button that is implemented, when the watch button is pressed it is added to the watched section. If someone wants to remove a movie from watched provide a removal confirmation pop-up.
+  Give me the code to implement a movie details pop up when clicking on a movie. There should also be a watched button that is implemented, when the watch button is pressed it is added to the watched section. If someone wants to remove a movie from watched provide a removal confirmation pop-up. Make sure the click to add watched button is not covering the poster.
   ```
 
 - **What it produced & what I changed:** The AI added a shared movie details pop-up and a Watched button that saves the list in the browser. I asked it to move the button below the poster and add a confirmation before removing a movie, then kept the revised code. Local testing confirmed that the pop-up works across all four movie pages and that changes to the Watched list persist after refreshing.
