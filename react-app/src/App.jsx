@@ -7,6 +7,7 @@ import Recommended from './pages/Recommended.jsx'
 import Watched from './pages/Watched.jsx'
 import Genre from './pages/Genre.jsx'
 import Search from './pages/Search.jsx'
+import Account from './pages/Account.jsx' // AI-assisted - see AI-USAGE.md #3
 import { getSearchQuery } from './data/searchMovies.js'
 
 function getPage() {
@@ -19,6 +20,11 @@ function getPage() {
       return 'genre'
     case '#/search':
       return 'search'
+    // AI-assisted - see AI-USAGE.md #3
+    case '#/login':
+      return 'login'
+    case '#/signup':
+      return 'signup'
     default:
       return 'home'
   }
@@ -30,6 +36,8 @@ const pageTitles = {
   watched: 'Notflix - Watched',
   genre: 'Notflix - Genre',
   search: 'Notflix - Search',
+  login: 'Notflix - Log In', // AI-assisted - see AI-USAGE.md #3
+  signup: 'Notflix - Sign Up',
 }
 
 export default function App() {
@@ -62,8 +70,9 @@ export default function App() {
       {page === 'watched' && <Watched />}
        {page === 'genre' && <Genre />}
       {page === 'search' && <Search query={searchQuery} />}
+      {(page === 'login' || page === 'signup') && <Account key={page} mode={page} />}
 
       <Footer />
-    </WatchedMoviesProvider> //AI ASSISTED
+    </WatchedMoviesProvider>
   )
 }

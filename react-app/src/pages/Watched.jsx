@@ -3,7 +3,7 @@ import { useWatchedMovies, watchedMovieKey } from '../components/WatchedMoviesCo
 import '../styles/Watchedstyles.css'
 
 export default function Watched() {
-  const { watchedMovies } = useWatchedMovies() //AI ASSISTED
+  const { account, watchedMovies, loading } = useWatchedMovies() // AI-assisted - see AI-USAGE.md #3
 
   return (
     <main className="watched-page">
@@ -13,8 +13,10 @@ export default function Watched() {
           Movies you have already watched.
         </p>
 
-        {watchedMovies.length === 0 && ( //AI ASSISTED
-          <p>Use the checkmark on any movie to add it here.</p> //AI ASSISTED
+        {loading && <p role="status">Loading your watched movies…</p>}{/* AI-assisted - see AI-USAGE.md #3 */}
+        {!loading && !account && <p><a href="#/login">Log in</a> to see your watched movies.</p>}
+        {account && watchedMovies.length === 0 && ( //AI ASSISTED
+          <p>Use the Watched button on any movie to add it here.</p> //AI ASSISTED
         )}{/* //AI ASSISTED */}
         <div className="movie-grid">
           {watchedMovies.map((movie) => (

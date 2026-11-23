@@ -1,6 +1,9 @@
 import SearchBar from './SearchBar.jsx'
+import { useWatchedMovies } from './WatchedMoviesContext.jsx' // AI-assisted - see AI-USAGE.md #3
 
 export default function Header({ page, searchQuery }) {
+  const { account, loading, pending, error, submit } = useWatchedMovies() // AI-assisted - see AI-USAGE.md #3
+  const onAccountPage = page === 'login' || page === 'signup'
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -58,7 +61,22 @@ export default function Header({ page, searchQuery }) {
         </nav>
 
         <SearchBar key={searchQuery} initialQuery={searchQuery} />
+        {/* AI-assisted - see AI-USAGE.md #3 */}
+        {account ? (
+          <div className="account-nav">
+            <span>{account.username}</span>
+            <button type="button" className="watched-toggle" disabled={pending} onClick={() => submit('logout')}>
+              Log Out
+            </button>
+          </div>
+        ) : !loading && (
+          <div className="account-nav">
+            <a className="nav-link" href="#/login" aria-current={page === 'login' ? 'page' : undefined}>Log In</a>
+            <a className="nav-link" href="#/signup" aria-current={page === 'signup' ? 'page' : undefined}>Sign Up</a>
+          </div>
+        )}
       </div>
+      {error && !onAccountPage && <p className="account-error" role="alert">{error}</p>}
     </header>
   )
 }

@@ -69,6 +69,19 @@ the URL it prints. Use a linked Netlify project with the variable available to l
 development, or set `TMDB_READ_TOKEN` in a local `.env` file at the project root.
 `npm run dev` runs the React app on its own.
 
+### Accounts and recommendations
+
+Run `npx netlify-cli dev` from the project root to use sign-up, login, and movie
+lists locally. The account function uses Netlify Blobs for private account and
+session records. The deployed site uses site-wide stores, and Netlify Dev uses
+local storage for Blobs. Recommendations use the same server-side
+`TMDB_READ_TOKEN` as search.
+
+Create an account with a unique username and a password. New accounts start with
+an empty Watched list. Recommended uses the most common genres in that list.
+Guests and accounts with an empty Watched list see overall top-rated titles.
+Results are sorted by TMDB rating and require at least 500 votes per title.
+
 We plan to use The Movie Database (TMDB) API as our main data source.
 
 TMDB provides information about movies and television shows, including:

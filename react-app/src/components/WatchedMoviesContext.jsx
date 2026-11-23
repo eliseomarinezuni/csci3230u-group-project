@@ -1,101 +1,87 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react' //AI ASSISTED
-import movies from '../data/movies.js' //AI ASSISTED
+// AI-assisted - see AI-USAGE.md #3
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 
-const storageKey = 'notflix.watchedMovies' //AI ASSISTED
-const WatchedMoviesContext = createContext(null) //AI ASSISTED
+const AccountContext = createContext(null)
+const emptyMovies = []
 
-const starterMovies = [ //AI ASSISTED
-  { //AI ASSISTED
-    ...movies.find((movie) => movie.id === 'inception'), //AI ASSISTED
-    watchedOn: '2026-09-12', //AI ASSISTED
-  }, //AI ASSISTED
-  { //AI ASSISTED
-    id: 'the-matrix', //AI ASSISTED
-    tmdbId: 603, //AI ASSISTED
-    title: 'The Matrix', //AI ASSISTED
-    poster: '/prototype/images/Matrix.jpeg', //AI ASSISTED
-    genres: ['Sci-Fi', 'Action'], //AI ASSISTED
-    rating: 8.7, //AI ASSISTED
-    releaseYear: 1999, //AI ASSISTED
-    description: 'A computer hacker learns that his world is a simulation and joins a group fighting to free humanity.', //AI ASSISTED
-    watchedOn: '2026-09-05', //AI ASSISTED
-  }, //AI ASSISTED
-  { //AI ASSISTED
-    ...movies.find((movie) => movie.id === 'spider-man-into-the-spider-verse'), //AI ASSISTED
-    watchedOn: '2026-08-28', //AI ASSISTED
-  }, //AI ASSISTED
-  { //AI ASSISTED
-    ...movies.find((movie) => movie.id === 'mad-max-fury-road'), //AI ASSISTED
-    watchedOn: '2026-08-19', //AI ASSISTED
-  }, //AI ASSISTED
-] //AI ASSISTED
+export function watchedMovieKey(movie) {
+  return String(movie.tmdbId ?? movie.id)
+}
 
-export function watchedMovieKey(movie) { //AI ASSISTED
-  return String(movie.tmdbId ?? movie.id) //AI ASSISTED
-} //AI ASSISTED
+async function accountRequest({ action, data, signal } = {}) {
+  const options = action
+    ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, ...data }) }
+    : { signal }
+  const response = await fetch('/api/account', options)
+  if (response.status === 429) throw new Error('Too many account requests. Try again in a minute.')
+  if (!response.headers.get('content-type')?.includes('application/json')) {
+    throw new Error('Accounts require Netlify Dev or a Netlify deployment.')
+  }
+  const result = await response.json()
+  if (!response.ok) {
+    throw Object.assign(new Error(result.error || 'Account request failed.'), { status: response.status })
+  }
+  return result.account
+}
 
-function readWatchedMovies() { //AI ASSISTED
-  try { //AI ASSISTED
-    const saved = JSON.parse(window.localStorage.getItem(storageKey)) //AI ASSISTED
-    return Array.isArray(saved) //AI ASSISTED
-      ? saved.filter((movie) => movie?.id != null && typeof movie.title === 'string' && Array.isArray(movie.genres)) //AI ASSISTED
-      : null //AI ASSISTED
-  } catch { //AI ASSISTED
-    return null //AI ASSISTED
-  } //AI ASSISTED
-} //AI ASSISTED
+export function WatchedMoviesProvider({ children }) {
+  const [account, setAccount] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [pending, setPending] = useState(false)
+  const [error, setError] = useState('')
+  const requestPending = useRef(false)
 
-function today() { //AI ASSISTED
-  const date = new Date() //AI ASSISTED
-  const month = String(date.getMonth() + 1).padStart(2, '0') //AI ASSISTED
-  const day = String(date.getDate()).padStart(2, '0') //AI ASSISTED
-  return `${date.getFullYear()}-${month}-${day}` //AI ASSISTED
-} //AI ASSISTED
+  useEffect(() => {
+    const controller = new AbortController()
+    accountRequest({ signal: controller.signal })
+      .then((loadedAccount) => {
+        if (!controller.signal.aborted) setAccount(loadedAccount)
+      })
+      .catch((failure) => {
+        if (!controller.signal.aborted) setError(failure.message)
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false)
+      })
+    return () => controller.abort()
+  }, [])
 
-export function WatchedMoviesProvider({ children }) { //AI ASSISTED
-  const [watchedMovies, setWatchedMovies] = useState(() => readWatchedMovies() ?? starterMovies) //AI ASSISTED
-  const storageFailed = useRef(false) //AI ASSISTED
+  async function submit(action, data) {
+    if (loading || requestPending.current) return false
+    requestPending.current = true
+    setPending(true)
+    setError('')
+    try {
+      setAccount(await accountRequest({ action, data }))
+      return true
+    } catch (failure) {
+      if (action === 'save-movie' && failure.status === 401) setAccount(null)
+      setError(failure.message)
+      return false
+    } finally {
+      requestPending.current = false
+      setPending(false)
+    }
+  }
 
-  useEffect(() => { //AI ASSISTED
-    function syncWatchedMovies(event) { //AI ASSISTED
-      if (!storageFailed.current && (event.key === storageKey || event.key === null)) { //AI ASSISTED
-        setWatchedMovies(readWatchedMovies() ?? starterMovies) //AI ASSISTED
-      } //AI ASSISTED
-    } //AI ASSISTED
+  function setMovieWatched(movie, enabled) { // AI-assisted - see AI-USAGE.md #4
+    if (!account) {
+      window.location.hash = '#/login'
+      return
+    }
+    return submit('save-movie', { list: 'watchedMovies', movie, enabled })
+  }
 
-    window.addEventListener('storage', syncWatchedMovies) //AI ASSISTED
-    return () => window.removeEventListener('storage', syncWatchedMovies) //AI ASSISTED
-  }, []) //AI ASSISTED
+  const value = {
+    account, loading, pending, error, submit,
+    clearError: () => setError(''),
+    watchedMovies: account?.watchedMovies ?? emptyMovies,
+    setMovieWatched,
+  }
 
-  function setMovieWatched(movie, isWatched) { //AI ASSISTED
-    const key = watchedMovieKey(movie) //AI ASSISTED
-    const current = storageFailed.current ? watchedMovies : readWatchedMovies() ?? watchedMovies //AI ASSISTED
-    const remaining = current.filter((saved) => watchedMovieKey(saved) !== key) //AI ASSISTED
-    const wasWatched = remaining.length !== current.length //AI ASSISTED
-    if (wasWatched === isWatched) { //AI ASSISTED
-      setWatchedMovies(current) //AI ASSISTED
-      return //AI ASSISTED
-    } //AI ASSISTED
+  return <AccountContext.Provider value={value}>{children}</AccountContext.Provider>
+}
 
-    const updated = isWatched ? [{ ...movie, watchedOn: today() }, ...current] : remaining //AI ASSISTED
-
-    setWatchedMovies(updated) //AI ASSISTED
-    if (storageFailed.current) return //AI ASSISTED
-    try { //AI ASSISTED
-      window.localStorage.setItem(storageKey, JSON.stringify(updated)) //AI ASSISTED
-    } catch { //AI ASSISTED
-      // Keep the list usable for this session if storage is unavailable. //AI ASSISTED
-      storageFailed.current = true //AI ASSISTED
-    } //AI ASSISTED
-  } //AI ASSISTED
-
-  return ( //AI ASSISTED
-    <WatchedMoviesContext.Provider value={{ watchedMovies, setMovieWatched }}>{/* //AI ASSISTED */}
-      {children}{/* //AI ASSISTED */}
-    </WatchedMoviesContext.Provider> //AI ASSISTED
-  ) //AI ASSISTED
-} //AI ASSISTED
-
-export function useWatchedMovies() { //AI ASSISTED
-  return useContext(WatchedMoviesContext) //AI ASSISTED
-} //AI ASSISTED
+export function useWatchedMovies() {
+  return useContext(AccountContext)
+}

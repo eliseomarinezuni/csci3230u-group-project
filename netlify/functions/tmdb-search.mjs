@@ -1,3 +1,5 @@
+import { mapTmdbMovie } from '../lib/tmdb.mjs' // AI-assisted - see AI-USAGE.md #3
+
 export default async function searchMovies(request) { //AI ASSISTED
   if (request.method !== 'GET') { //AI ASSISTED
     return Response.json({ error: 'Use GET to search for movies.' }, { //AI ASSISTED
@@ -32,15 +34,7 @@ export default async function searchMovies(request) { //AI ASSISTED
     } //AI ASSISTED
 
     const { results } = await response.json() //AI ASSISTED
-    const movies = results.map((movie) => ({ //AI ASSISTED
-      id: movie.id, //AI ASSISTED
-      title: movie.title, //AI ASSISTED
-      description: movie.overview, //AI ASSISTED
-      releaseDate: movie.release_date || null, //AI ASSISTED
-      poster: movie.poster_path ? `https://image.tmdb.org/t/p/w342${movie.poster_path}` : null, //AI ASSISTED
-      rating: movie.vote_count > 0 ? movie.vote_average : null, //AI ASSISTED
-      genreIds: movie.genre_ids, //AI ASSISTED
-    })) //AI ASSISTED
+    const movies = results.map(mapTmdbMovie) // AI-assisted - see AI-USAGE.md #3
 
     return Response.json({ movies }) //AI ASSISTED
   } catch (error) { //AI ASSISTED

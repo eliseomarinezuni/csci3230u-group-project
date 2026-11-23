@@ -1,6 +1,6 @@
 import { searchTmdbMovies } from './tmdb.js' //AI ASSISTED
 
-const movieGenres = { //AI ASSISTED
+export const movieGenres = { //AI ASSISTED
   28: 'Action', //AI ASSISTED
   12: 'Adventure', //AI ASSISTED
   16: 'Animation', //AI ASSISTED
@@ -33,8 +33,12 @@ export function getSearchHash(query) {
 
 export default async function searchMovies(query, options) { //AI ASSISTED
   const movies = await searchTmdbMovies(query, options) //AI ASSISTED
-  return movies.map((movie) => ({ //AI ASSISTED
+  return movies.map(withGenreNames) // AI-assisted - see AI-USAGE.md #3
+}
+
+export function withGenreNames(movie) { // AI-assisted - see AI-USAGE.md #3
+  return {
     ...movie, //AI ASSISTED
     genres: (movie.genreIds ?? []).map((id) => movieGenres[id]).filter(Boolean), //AI ASSISTED
-  })) //AI ASSISTED
+  }
 }

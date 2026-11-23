@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom' //AI ASSISTED
 import { useWatchedMovies, watchedMovieKey } from './WatchedMoviesContext.jsx' //AI ASSISTED
 
 export default function WatchedButton({ movie }) { //AI ASSISTED
-  const { watchedMovies, setMovieWatched } = useWatchedMovies() //AI ASSISTED
+  const { watchedMovies, setMovieWatched, loading, pending } = useWatchedMovies() // AI-assisted - see AI-USAGE.md #3
   const [confirmingRemoval, setConfirmingRemoval] = useState(false) //AI ASSISTED
   const confirmation = useRef(null) //AI ASSISTED
   const titleId = useId() //AI ASSISTED
@@ -42,6 +42,7 @@ export default function WatchedButton({ movie }) { //AI ASSISTED
         aria-pressed={isWatched} /* //AI ASSISTED */
         aria-haspopup={isWatched ? 'dialog' : undefined} /* //AI ASSISTED */
         title={isWatched ? 'Remove from Watched' : 'Mark as watched'} /* //AI ASSISTED */
+        disabled={loading || pending} /* AI-assisted - see AI-USAGE.md #3 */
         onClick={handleClick} /* //AI ASSISTED */
       >{/* //AI ASSISTED */}
         <span className="watched-toggle__icon" aria-hidden="true">{isWatched ? '✓' : '+'}</span>{/* //AI ASSISTED */}

@@ -6,3 +6,9 @@
   from = "/api/movies/search" # //AI ASSISTED
   to = "/.netlify/functions/tmdb-search" # //AI ASSISTED
   status = 200 # //AI ASSISTED
+
+# AI-assisted - see AI-USAGE.md #3
+[[redirects]]
+  from = "/api/movies/recommendations"
+  to = "/.netlify/functions/recommendations"
+  status = 200
