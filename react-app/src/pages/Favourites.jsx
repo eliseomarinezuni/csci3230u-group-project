@@ -1,6 +1,6 @@
 import { Link } from 'react-router' //AI ASSISTED
 import MovieCard from '../components/MovieCard.jsx' //AI ASSISTED
-import { useFavouriteMovies, favouriteMovieKey } from '../components/FavouriteMoviesContext.jsx' //AI ASSISTED
+import { useFavouriteMovies, favouriteMovieKey } from '../components/WatchedMoviesContext.jsx' //AI ASSISTED
 import '../styles/Watchedstyles.css'
 
 export default function Favourites() {

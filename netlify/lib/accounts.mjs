@@ -76,7 +76,12 @@ export async function signedInUsername(request, store) {
 }
 
 export function publicAccount(account) {
-  return { username: account.username, watchedMovies: account.watchedMovies } // AI-assisted - see AI-USAGE.md #4
+  // AI-assisted - see AI-USAGE.md #4
+  return {
+    username: account.username,
+    watchedMovies: account.watchedMovies ?? [],
+    favouriteMovies: account.favouriteMovies ?? [],
+  }
 }
 
 export function reply(data, status = 200, cookie) {
@@ -150,27 +155,52 @@ function cleanMovie(movie) {
 
 export async function saveMovieStatus(store, username, { list, movie, enabled }) {
   // AI-assisted - see AI-USAGE.md #4
-  if (list !== 'watchedMovies' || typeof enabled !== 'boolean') {
+  if ((list !== 'watchedMovies' && list !== 'favouriteMovies') || typeof enabled !== 'boolean') {
     throw new AccountError(400, 'Invalid movie action.')
   }
   const id = movieId(movie)
   if (!id) throw new AccountError(400, 'Invalid movie ID.')
-  const entry = enabled ? { ...cleanMovie(movie), watchedOn: new Date().toISOString().slice(0, 10) } : null
 
-  for (let attempt = 0; attempt < 4; attempt++) {
-    const current = await store.getWithMetadata(username, { type: 'json' })
-    if (!current) throw new AccountError(401, 'Log in to save movies.')
-    const account = current.data
-    const movies = account.watchedMovies
-    if (movies.some((saved) => saved.id === id) === enabled) return account
-    if (enabled && movies.length >= 500) throw new AccountError(409, 'This list is full.')
+  // Update watchedMovies for the account
+  if (list === 'watchedMovies') {
+    const entry = enabled ? { ...cleanMovie(movie), watchedOn: new Date().toISOString().slice(0, 10) } : null
 
-    const update = {
-      ...account,
-      watchedMovies: enabled ? [entry, ...movies] : movies.filter((item) => item.id !== id),
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const current = await store.getWithMetadata(username, { type: 'json' })
+      if (!current) throw new AccountError(401, 'Log in to save movies.')
+      const account = current.data
+      const movies = account.watchedMovies ?? []
+      if (movies.some((saved) => saved.id === id) === enabled) return account
+      if (enabled && movies.length >= 500) throw new AccountError(409, 'This list is full.')
+
+      const update = {
+        ...account,
+        watchedMovies: enabled ? [entry, ...movies] : movies.filter((item) => item.id !== id),
+      }
+      const result = await store.setJSON(username, update, { onlyIfMatch: current.etag })
+      if (result.modified) return update
     }
-    const result = await store.setJSON(username, update, { onlyIfMatch: current.etag })
-    if (result.modified) return update
+  }
+
+  // Update favouriteMovies for the account
+  else if (list === 'favouriteMovies') {
+    const entry = enabled ? { ...cleanMovie(movie), watchedOn: new Date().toISOString().slice(0, 10) } : null
+
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const current = await store.getWithMetadata(username, { type: 'json' })
+      if (!current) throw new AccountError(401, 'Log in to save movies.')
+      const account = current.data
+      const movies = account.favouriteMovies ?? []
+      if (movies.some((saved) => saved.id === id) === enabled) return account
+      if (enabled && movies.length >= 500) throw new AccountError(409, 'This list is full.')
+
+      const update = {
+        ...account,
+        favouriteMovies: enabled ? [entry, ...movies] : movies.filter((item) => item.id !== id),
+      }
+      const result = await store.setJSON(username, update, { onlyIfMatch: current.etag })
+      if (result.modified) return update
+    }
   }
   throw new AccountError(409, 'Your list changed. Please try again.')
 }

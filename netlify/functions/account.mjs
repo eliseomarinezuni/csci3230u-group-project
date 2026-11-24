@@ -52,7 +52,8 @@ export async function handleAccount(request, openStores) {
     }
 
     if (action === 'signup') {
-      const account = { username, password: await hashPassword(password), watchedMovies: [] } // AI-assisted - see AI-USAGE.md #4
+      // AI-assisted - see AI-USAGE.md #4
+      const account = { username, password: await hashPassword(password), watchedMovies: [], favouriteMovies: [] }
       const result = await accounts.setJSON(username, account, { onlyIfNew: true })
       if (!result.modified) throw new AccountError(409, 'That username is taken.')
       return reply({ account: publicAccount(account) }, 201, await startSession(request, sessions, username))

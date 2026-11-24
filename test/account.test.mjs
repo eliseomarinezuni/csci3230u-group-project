@@ -52,7 +52,11 @@ test('username uniqueness, password verification, and session invalidation', asy
   assert.equal(signup.status, 201)
   const cookie = signup.headers.get('set-cookie')
   assert.match(cookie, /HttpOnly; SameSite=Lax; Secure/)
-  assert.deepEqual((await signup.json()).account, { username: 'moviefan', watchedMovies: [] })
+  assert.deepEqual((await signup.json()).account, {
+    username: 'moviefan',
+    watchedMovies: [],
+    favouriteMovies: [],
+  })
   assert.equal((await call({ action: 'signup', ...credentials, username: 'MOVIEFAN' })).status, 409)
   assert.equal((await call({ action: 'login', ...credentials, password: 'wrong demo password' })).status, 401)
   assert.equal((await call({ action: 'login', ...credentials })).status, 200)
@@ -81,4 +85,17 @@ test('watched movies are private and concurrent updates preserve both movies', a
   assert.deepEqual((await (await call(null, secondCookie)).json()).account.watchedMovies, [])
   const removed = await call({ ...watch, enabled: false, movie: { id: 27205 } }, firstCookie)
   assert.deepEqual((await removed.json()).account.watchedMovies.map(({ id }) => id), [603])
+})
+
+// AI-assisted - see AI-USAGE.md #4
+test('favourite movies can be saved for accounts that predate the list', async () => {
+  const call = accountApi()
+  const signup = await call({ action: 'signup', ...credentials })
+  const cookie = signup.headers.get('set-cookie')
+  const favour = { action: 'save-movie', list: 'favouriteMovies', movie, enabled: true }
+  const saved = await call(favour, cookie)
+  assert.equal(saved.status, 200)
+  const { account } = await saved.json()
+  assert.deepEqual(account.favouriteMovies.map(({ id }) => id), [27205])
+  assert.deepEqual(account.watchedMovies, [])
 })

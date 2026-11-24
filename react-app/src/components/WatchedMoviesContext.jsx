@@ -9,6 +9,10 @@ export function watchedMovieKey(movie) {
   return String(movie.tmdbId ?? movie.id)
 }
 
+export function favouriteMovieKey(movie) {
+  return String(movie.tmdbId ?? movie.id)
+}
+
 async function accountRequest({ action, data, signal } = {}) {
   const options = action
     ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, ...data }) }
@@ -74,16 +78,30 @@ export function WatchedMoviesProvider({ children }) {
     return submit('save-movie', { list: 'watchedMovies', movie, enabled })
   }
 
+  function setMovieFavourited(movie, enabled) { // AI-assisted - see AI-USAGE.md #4
+    if (!account) {
+      navigate('/login') //AI ASSISTED
+      return
+    }
+    return submit('save-movie', { list: 'favouriteMovies', movie, enabled })
+  }
+
   const value = {
     account, loading, pending, error, submit,
     clearError: () => setError(''),
     watchedMovies: account?.watchedMovies ?? emptyMovies,
+    favouriteMovies: account?.favouriteMovies ?? emptyMovies,
     setMovieWatched,
+    setMovieFavourited
   }
 
   return <AccountContext.Provider value={value}>{children}</AccountContext.Provider>
 }
 
 export function useWatchedMovies() {
+  return useContext(AccountContext)
+}
+
+export function useFavouriteMovies() {
   return useContext(AccountContext)
 }
