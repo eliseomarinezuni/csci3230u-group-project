@@ -45,9 +45,13 @@ export default function Header({ page, searchQuery, searchFilters }) { // AI-ass
             </li>
 
             <li>
-              <span className="nav-link disabled" aria-disabled="true">
+              <Link /* //AI ASSISTED */
+                to="/favourites" /* //AI ASSISTED */
+                className={`nav-link${page === 'favourites' ? ' active' : ''}`}
+                aria-current={page === 'favourites' ? 'page' : undefined}
+              >
                 Favourites
-              </span>
+              </Link>{/* //AI ASSISTED */}
             </li>
 
             <li>

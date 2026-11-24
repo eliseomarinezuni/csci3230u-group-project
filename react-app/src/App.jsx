@@ -10,6 +10,8 @@ import Genre from './pages/Genre.jsx'
 import Search from './pages/Search.jsx'
 import Account from './pages/Account.jsx' // AI-assisted - see AI-USAGE.md #3
 import MoviePage from './pages/MoviePage.jsx' //AI ASSISTED
+import Favourites from './pages/Favourites.jsx'
+import NotFound from './pages/NotFound.jsx'
 import TvPage from './pages/TvPage.jsx' // AI-assisted - see AI-USAGE.md #6
 import { getSearchFilters, getSearchQuery } from './data/searchMovies.js' // AI-assisted - see AI-USAGE.md #7
 
@@ -17,6 +19,7 @@ const pageTitles = {
   home: 'Notflix - Home',
   recommended: 'Notflix - Recommended',
   watched: 'Notflix - Watched',
+  favourites: 'Notflix - Favourites',
   genre: 'Notflix - Genre',
   search: 'Notflix - Search',
   login: 'Notflix - Log In', // AI-assisted - see AI-USAGE.md #3
@@ -49,10 +52,11 @@ export default function App() {
       <Header page={isMovieRoute && !background ? 'movie' : page} searchQuery={searchQuery} searchFilters={searchFilters} />{/* AI-assisted - see AI-USAGE.md #7 */}
 
       <Routes location={pageLocation}>{/* //AI ASSISTED */}
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />{/* //AI ASSISTED */}
         <Route path="/recommended" element={<Recommended />} />{/* //AI ASSISTED */}
         <Route path="/watched" element={<Watched />} />{/* //AI ASSISTED */}
-        
+        <Route path="/favourites" element={<Favourites />} />//AI ASSISTED
         {/* AI-assisted - see AI-USAGE.md #6: /genre opens all movies */}
         <Route path="/genre" element={<Navigate to="/genre/movie/all" replace />} />
         <Route path="/genre/:mediaType/:genreSlug" element={<Genre />} />
