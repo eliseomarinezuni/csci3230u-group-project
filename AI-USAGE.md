@@ -182,3 +182,18 @@ Also drop a marker where the code lives: `// AI-assisted - see AI-USAGE.md #<n>`
   ```
 
 - **What it produced & what I changed:** Codex removed the Favourites feature added in entry #3 and restored the pre-existing navigation placeholder. It changed recommendations and account updates to use Watched only and updated the tests for the revised behavior.
+
+
+### #5 - Shareable movie detail URLs
+
+- **Date:** 2026-11-24
+- **Member:** Eliseo Marinez
+- **Tool / model:** ChatGPT (Codex, GPT-6)
+- **Files:** `netlify.toml`, `netlify/functions/tmdb-movie.mjs`, `package.json`, `package-lock.json`, `react-app/src/App.jsx`, `react-app/src/main.jsx`, `react-app/src/components/Header.jsx`, `react-app/src/components/MovieCard.jsx`, `react-app/src/components/MovieDetails.jsx`, `react-app/src/components/SearchBar.jsx`, `react-app/src/components/WatchedMoviesContext.jsx`, `react-app/src/data/searchMovies.js`, `react-app/src/data/tmdb.js`, `react-app/src/pages/Account.jsx`, `react-app/src/pages/Home.jsx`, `react-app/src/pages/MoviePage.jsx`, `react-app/src/pages/Watched.jsx`, `react-app/src/styles/MovieDetails.css`, `test/account-components.test.mjs`, `test/movie-details.test.mjs`
+- **Prompt (verbatim):**
+
+  ```text
+  ### Generate the code to give every movie its own URL. Right now, clicking a movie opens your details pop-up, but the URL stays the same. The rubric requires a movie detail view with a URL like `/movies/550`.
+  ```
+
+- **What it produced & what I changed:** The AI added shareable movie URLs using React Router and a Netlify Function that fetches details by TMDB ID. It reused the existing pop-up for card clicks, added a standalone view for direct links, and configured a Netlify fallback for refreshes. I pulled the latest team changes before implementation and kept the generated code as-is. All eight automated tests passed, and direct links and refreshes were tested locally with mocked TMDB data.

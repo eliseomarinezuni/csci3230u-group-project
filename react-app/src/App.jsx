@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react' //AI ASSISTED
+import { matchPath, Navigate, Route, Routes, useLocation } from 'react-router' //AI ASSISTED
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import { WatchedMoviesProvider } from './components/WatchedMoviesContext.jsx' //AI ASSISTED
@@ -8,27 +9,8 @@ import Watched from './pages/Watched.jsx'
 import Genre from './pages/Genre.jsx'
 import Search from './pages/Search.jsx'
 import Account from './pages/Account.jsx' // AI-assisted - see AI-USAGE.md #3
+import MoviePage from './pages/MoviePage.jsx' //AI ASSISTED
 import { getSearchQuery } from './data/searchMovies.js'
-
-function getPage() {
-  switch (window.location.hash.split('?')[0]) {
-    case '#/recommended':
-      return 'recommended'
-    case '#/watched':
-      return 'watched'
-    case '#/genre': 
-      return 'genre'
-    case '#/search':
-      return 'search'
-    // AI-assisted - see AI-USAGE.md #3
-    case '#/login':
-      return 'login'
-    case '#/signup':
-      return 'signup'
-    default:
-      return 'home'
-  }
-}
 
 const pageTitles = {
   home: 'Notflix - Home',
@@ -38,39 +20,47 @@ const pageTitles = {
   search: 'Notflix - Search',
   login: 'Notflix - Log In', // AI-assisted - see AI-USAGE.md #3
   signup: 'Notflix - Sign Up',
+  movie: 'Notflix - Movie Details', //AI ASSISTED
 }
 
 export default function App() {
-  const [page, setPage] = useState(getPage)
-  const [searchQuery, setSearchQuery] = useState(() => getSearchQuery())
+  const location = useLocation() //AI ASSISTED
+  const isMovieRoute = Boolean(matchPath('/movies/:id', location.pathname)) //AI ASSISTED
+  const background = isMovieRoute ? location.state?.background : null //AI ASSISTED
+  const pageLocation = background ?? location //AI ASSISTED
+  const section = pageLocation.pathname.split('/')[1] //AI ASSISTED
+  const page = Object.hasOwn(pageTitles, section) ? section : 'home' //AI ASSISTED
+  const searchQuery = page === 'search' ? getSearchQuery(pageLocation.search) : '' //AI ASSISTED
 
   useEffect(() => {
-    function handleNavigation() {
-      setPage(getPage())
-      setSearchQuery(getSearchQuery())
-    }
+    document.title = isMovieRoute ? pageTitles.movie : pageTitles[page] //AI ASSISTED
+  }, [isMovieRoute, page]) //AI ASSISTED
 
-    window.addEventListener('hashchange', handleNavigation)
-
-    return () => {
-      window.removeEventListener('hashchange', handleNavigation)
-    }
-  }, [])
-
-  useEffect(() => {
-    document.title = pageTitles[page]
-  }, [page])
+  if (location.pathname === '/' && /^#\/(?:recommended|watched|genre|search|login|signup)?(?:\?|$)/.test(location.hash)) { //AI ASSISTED
+    return <Navigate to={location.hash.slice(1)} replace /> //AI ASSISTED
+  } //AI ASSISTED
 
   return (
     <WatchedMoviesProvider>{/* //AI ASSISTED */}
-      <Header page={page} searchQuery={page === 'search' ? searchQuery : ''} />
+      <Header page={isMovieRoute && !background ? 'movie' : page} searchQuery={searchQuery} />{/* //AI ASSISTED */}
 
-      {page === 'home' && <Home />}
-      {page === 'recommended' && <Recommended />}
-      {page === 'watched' && <Watched />}
-       {page === 'genre' && <Genre />}
-      {page === 'search' && <Search query={searchQuery} />}
-      {(page === 'login' || page === 'signup') && <Account key={page} mode={page} />}
+      <Routes location={pageLocation}>{/* //AI ASSISTED */}
+        <Route path="/" element={<Home />} />{/* //AI ASSISTED */}
+        <Route path="/recommended" element={<Recommended />} />{/* //AI ASSISTED */}
+        <Route path="/watched" element={<Watched />} />{/* //AI ASSISTED */}
+        <Route path="/genre" element={<Genre />} />{/* //AI ASSISTED */}
+        <Route path="/search" element={<Search query={searchQuery} />} />{/* //AI ASSISTED */}
+        {/* AI-assisted - see AI-USAGE.md #3 */}{/* //AI ASSISTED */}
+        <Route path="/login" element={<Account key="login" mode="login" />} />{/* //AI ASSISTED */}
+        <Route path="/signup" element={<Account key="signup" mode="signup" />} />{/* //AI ASSISTED */}
+        <Route path="/movies/:id" element={<MoviePage />} />{/* //AI ASSISTED */}
+        <Route path="*" element={<Home />} />{/* //AI ASSISTED */}
+      </Routes>{/* //AI ASSISTED */}
+      {background && ( //AI ASSISTED
+        <Routes>{/* //AI ASSISTED */}
+          <Route path="/movies/:id" element={<MoviePage overlay />} />{/* //AI ASSISTED */}
+        </Routes> //AI ASSISTED
+      )}{/* //AI ASSISTED */}
 
       <Footer />
     </WatchedMoviesProvider>

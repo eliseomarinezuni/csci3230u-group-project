@@ -1,5 +1,6 @@
 // AI-assisted - see AI-USAGE.md #3
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router' //AI ASSISTED
 
 const AccountContext = createContext(null)
 const emptyMovies = []
@@ -25,6 +26,7 @@ async function accountRequest({ action, data, signal } = {}) {
 }
 
 export function WatchedMoviesProvider({ children }) {
+  const navigate = useNavigate() //AI ASSISTED
   const [account, setAccount] = useState(null)
   const [loading, setLoading] = useState(true)
   const [pending, setPending] = useState(false)
@@ -66,7 +68,7 @@ export function WatchedMoviesProvider({ children }) {
 
   function setMovieWatched(movie, enabled) { // AI-assisted - see AI-USAGE.md #4
     if (!account) {
-      window.location.hash = '#/login'
+      navigate('/login') //AI ASSISTED
       return
     }
     return submit('save-movie', { list: 'watchedMovies', movie, enabled })

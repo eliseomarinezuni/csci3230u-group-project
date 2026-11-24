@@ -12,3 +12,13 @@
   from = "/api/movies/recommendations"
   to = "/.netlify/functions/recommendations"
   status = 200
+
+[[redirects]] # //AI ASSISTED
+  from = "/api/movies/:id" # //AI ASSISTED
+  to = "/.netlify/functions/tmdb-movie/:id" # //AI ASSISTED
+  status = 200 # //AI ASSISTED
+
+[[redirects]] # //AI ASSISTED
+  from = "/*" # //AI ASSISTED
+  to = "/index.html" # //AI ASSISTED
+  status = 200 # //AI ASSISTED

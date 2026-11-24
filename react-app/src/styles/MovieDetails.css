@@ -20,6 +20,14 @@ html:has(.movie-details[open]) { /* //AI ASSISTED */
   animation: movie-details-open 220ms ease-out; /* //AI ASSISTED */
 } /* //AI ASSISTED */
 
+.movie-details--page { /* //AI ASSISTED */
+  position: static; /* //AI ASSISTED */
+  width: 100%; /* //AI ASSISTED */
+  max-width: 46rem; /* //AI ASSISTED */
+  max-height: none; /* //AI ASSISTED */
+  overflow: hidden; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
 .movie-details::backdrop { /* //AI ASSISTED */
   background: rgb(0 0 0 / 75%); /* //AI ASSISTED */
 } /* //AI ASSISTED */
@@ -47,7 +55,7 @@ html:has(.movie-details[open]) { /* //AI ASSISTED */
   overflow-wrap: anywhere; /* //AI ASSISTED */
 } /* //AI ASSISTED */
 
-.movie-details__content h2 { /* //AI ASSISTED */
+.movie-details__content .movie-details__title { /* //AI ASSISTED */
   font-size: clamp(1.5rem, 4vw, 2.25rem); /* //AI ASSISTED */
   line-height: 1.15; /* //AI ASSISTED */
   margin-bottom: 0.75rem; /* //AI ASSISTED */
@@ -75,6 +83,7 @@ html:has(.movie-details[open]) { /* //AI ASSISTED */
   position: absolute; /* //AI ASSISTED */
   top: 0.75rem; /* //AI ASSISTED */
   right: 0.75rem; /* //AI ASSISTED */
+  z-index: 1; /* //AI ASSISTED */
 } /* //AI ASSISTED */
 
 .movie-details__close { /* //AI ASSISTED */

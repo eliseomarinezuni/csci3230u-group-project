@@ -1,3 +1,4 @@
+import { Link } from 'react-router' //AI ASSISTED
 import SearchBar from '../components/SearchBar.jsx'
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
           <h1>Welcome to <span className="accent">Notflix</span></h1>
           <p className="hero-subtitle">Discover movies you might want to watch.</p>
           <SearchBar variant="home" />
-          <a href="#/recommended" className="btn btn-primary">Browse Recommended Movies</a>
+          <Link to="/recommended" className="btn btn-primary">Browse Recommended Movies</Link>{/* //AI ASSISTED */}
         </div>
       </section>
 

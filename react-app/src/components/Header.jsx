@@ -1,3 +1,4 @@
+import { Link } from 'react-router' //AI ASSISTED
 import SearchBar from './SearchBar.jsx'
 import { useWatchedMovies } from './WatchedMoviesContext.jsx' // AI-assisted - see AI-USAGE.md #3
 
@@ -7,40 +8,40 @@ export default function Header({ page, searchQuery }) {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a href="#/" className="logo" aria-label="Notflix Home">
+        <Link to="/" className="logo" aria-label="Notflix Home">{/* //AI ASSISTED */}
           NOTFLIX
-        </a>
+        </Link>{/* //AI ASSISTED */}
 
         <nav aria-label="Main navigation">
           <ul className="nav-list">
             <li>
-              <a
-                href="#/"
+              <Link /* //AI ASSISTED */
+                to="/" /* //AI ASSISTED */
                 className={`nav-link${page === 'home' ? ' active' : ''}`}
                 aria-current={page === 'home' ? 'page' : undefined}
               >
                 Home
-              </a>
+              </Link>{/* //AI ASSISTED */}
             </li>
 
             <li>
-              <a
-                href="#/recommended"
+              <Link /* //AI ASSISTED */
+                to="/recommended" /* //AI ASSISTED */
                 className={`nav-link${page === 'recommended' ? ' active' : ''}`}
                 aria-current={page === 'recommended' ? 'page' : undefined}
               >
                 Recommended
-              </a>
+              </Link>{/* //AI ASSISTED */}
             </li>
 
             <li>
-              <a
-                href="#/watched"
+              <Link /* //AI ASSISTED */
+                to="/watched" /* //AI ASSISTED */
                 className={`nav-link${page === 'watched' ? ' active' : ''}`}
                 aria-current={page === 'watched' ? 'page' : undefined}
               >
                 Watched
-              </a>
+              </Link>{/* //AI ASSISTED */}
             </li>
 
             <li>
@@ -50,12 +51,12 @@ export default function Header({ page, searchQuery }) {
             </li>
 
             <li>
-              <a href="#/genre"
+              <Link to="/genre" /* //AI ASSISTED */
               className={`nav-link${page === 'genre' ? ' active' : ''}`}
               aria-current={page === 'genre' ? 'page' : undefined}
               >
                 Genre
-              </a>
+              </Link>{/* //AI ASSISTED */}
             </li>
           </ul>
         </nav>
@@ -71,8 +72,8 @@ export default function Header({ page, searchQuery }) {
           </div>
         ) : !loading && (
           <div className="account-nav">
-            <a className="nav-link" href="#/login" aria-current={page === 'login' ? 'page' : undefined}>Log In</a>
-            <a className="nav-link" href="#/signup" aria-current={page === 'signup' ? 'page' : undefined}>Sign Up</a>
+            <Link className="nav-link" to="/login" aria-current={page === 'login' ? 'page' : undefined}>Log In</Link>{/* //AI ASSISTED */}
+            <Link className="nav-link" to="/signup" aria-current={page === 'signup' ? 'page' : undefined}>Sign Up</Link>{/* //AI ASSISTED */}
           </div>
         )}
       </div>

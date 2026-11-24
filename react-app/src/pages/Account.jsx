@@ -1,18 +1,20 @@
 // AI-assisted - see AI-USAGE.md #3
 import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router' //AI ASSISTED
 import { useWatchedMovies } from '../components/WatchedMoviesContext.jsx'
 import '../styles/Account.css'
 
 export default function Account({ mode }) {
   const { account, loading, pending, error, clearError, submit } = useWatchedMovies()
+  const navigate = useNavigate() //AI ASSISTED
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const isSignup = mode === 'signup'
   const title = isSignup ? 'Sign Up' : 'Log In'
 
   useEffect(() => {
-    if (account) window.location.replace('#/recommended')
-  }, [account])
+    if (account) navigate('/recommended', { replace: true }) //AI ASSISTED
+  }, [account, navigate]) //AI ASSISTED
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -41,9 +43,9 @@ export default function Account({ mode }) {
         </button>
       </form>
       {isSignup ? (
-        <p>Already have an account? <a href="#/login" onClick={clearError}>Log in</a>.</p>
+        <p>Already have an account? <Link to="/login" onClick={clearError}>Log in</Link>.</p> //AI ASSISTED
       ) : (
-        <p>Need an account? <a href="#/signup" onClick={clearError}>Sign up</a>.</p>
+        <p>Need an account? <Link to="/signup" onClick={clearError}>Sign up</Link>.</p> //AI ASSISTED
       )}
     </main>
   )

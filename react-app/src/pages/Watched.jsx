@@ -1,3 +1,4 @@
+import { Link } from 'react-router' //AI ASSISTED
 import MovieCard from '../components/MovieCard.jsx' //AI ASSISTED
 import { useWatchedMovies, watchedMovieKey } from '../components/WatchedMoviesContext.jsx' //AI ASSISTED
 import '../styles/Watchedstyles.css'
@@ -14,7 +15,7 @@ export default function Watched() {
         </p>
 
         {loading && <p role="status">Loading your watched movies…</p>}{/* AI-assisted - see AI-USAGE.md #3 */}
-        {!loading && !account && <p><a href="#/login">Log in</a> to see your watched movies.</p>}
+        {!loading && !account && <p><Link to="/login">Log in</Link> to see your watched movies.</p>}{/* //AI ASSISTED */}
         {account && watchedMovies.length === 0 && ( //AI ASSISTED
           <p>Use the Watched button on any movie to add it here.</p> //AI ASSISTED
         )}{/* //AI ASSISTED */}

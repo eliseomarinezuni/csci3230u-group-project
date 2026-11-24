@@ -22,13 +22,12 @@ export const movieGenres = { //AI ASSISTED
   37: 'Western', //AI ASSISTED
 }
 
-export function getSearchQuery(hash = window.location.hash) {
-  const queryString = hash.split('?')[1] ?? ''
-  return (new URLSearchParams(queryString).get('q') ?? '').trim()
+export function getSearchQuery(search) { //AI ASSISTED
+  return (new URLSearchParams(search).get('q') ?? '').trim() //AI ASSISTED
 }
 
-export function getSearchHash(query) {
-  return `#/search?q=${encodeURIComponent(query.trim())}`
+export function getSearchPath(query) { //AI ASSISTED
+  return `/search?q=${encodeURIComponent(query.trim())}` //AI ASSISTED
 }
 
 export default async function searchMovies(query, options) { //AI ASSISTED

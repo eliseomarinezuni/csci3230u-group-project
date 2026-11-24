@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import MovieDetails from './MovieDetails.jsx' //AI ASSISTED
+import { Link, useLocation } from 'react-router' //AI ASSISTED
 import WatchedButton from './WatchedButton.jsx' //AI ASSISTED
 
 function formatWatchedDate(value) { //AI ASSISTED
@@ -11,7 +10,8 @@ function formatWatchedDate(value) { //AI ASSISTED
 } //AI ASSISTED
 
 export default function MovieCard({ movie }) {
-  const [showDetails, setShowDetails] = useState(false) //AI ASSISTED
+  const location = useLocation() //AI ASSISTED
+  const tmdbId = movie.tmdbId ?? movie.id //AI ASSISTED
   const poster = movie.poster && <img src={movie.poster} alt="" /> //AI ASSISTED
   const movieInfo = ( //AI ASSISTED
     <>{/* //AI ASSISTED */}
@@ -25,14 +25,11 @@ export default function MovieCard({ movie }) {
 
   return (
     <div className="movie-card" data-genre={movie.genres.join(' ')}>
-      <button
-        type="button"
+      <Link /* //AI ASSISTED */
+        to={`/movies/${tmdbId}`} /* //AI ASSISTED */
+        state={{ background: location }} /* //AI ASSISTED */
         className="movie-card__toggle"
         aria-haspopup="dialog" /* //AI ASSISTED */
-        onClick={(event) => { /* //AI ASSISTED */
-          event.currentTarget.focus() //AI ASSISTED
-          setShowDetails(true) //AI ASSISTED
-        }} /* //AI ASSISTED */
       >
         {movie.watchedOn ? ( //AI ASSISTED
           <>{/* //AI ASSISTED */}
@@ -51,11 +48,10 @@ export default function MovieCard({ movie }) {
             {movieInfo}{/* //AI ASSISTED */}
           </> //AI ASSISTED
         )}{/* //AI ASSISTED */}
-      </button>
+      </Link>{/* //AI ASSISTED */}
       <div className="movie-card__actions">{/* //AI ASSISTED */}
         <WatchedButton movie={movie} />{/* //AI ASSISTED */}
       </div>{/* //AI ASSISTED */}
-      {showDetails && <MovieDetails movie={movie} onClose={() => setShowDetails(false)} />}{/* //AI ASSISTED */}
     </div>
   )
 }

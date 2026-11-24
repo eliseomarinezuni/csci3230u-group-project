@@ -1,17 +1,19 @@
 import { useId, useState } from 'react'
-import { getSearchHash } from '../data/searchMovies.js'
+import { useNavigate } from 'react-router' //AI ASSISTED
+import { getSearchPath } from '../data/searchMovies.js' //AI ASSISTED
 import '../styles/Search.css'
 
 // 'nav' for compact search bar, 'home' for homepage search bar.
 export default function SearchBar({ initialQuery = '', variant = 'nav' }) {
   const [query, setQuery] = useState(initialQuery)
   const inputId = useId()
+  const navigate = useNavigate() //AI ASSISTED
 
   function handleSubmit(event) {
     event.preventDefault()
     if (!query.trim()) return
 
-    window.location.hash = getSearchHash(query)
+    navigate(getSearchPath(query)) //AI ASSISTED
   }
 
   return (
