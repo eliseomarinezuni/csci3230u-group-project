@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router' //AI ASSISTED
 import WatchedButton from './WatchedButton.jsx' //AI ASSISTED
+import FavouriteButton from './FavouriteButton.jsx'
 
 function formatWatchedDate(value) { //AI ASSISTED
   return new Date(`${value}T00:00:00`).toLocaleDateString('en-CA', { //AI ASSISTED
@@ -52,6 +53,7 @@ export default function MovieCard({ movie }) {
       </Link>{/* //AI ASSISTED */}
       {!isTv && ( /* AI-assisted - see AI-USAGE.md #6: Watched is for movies only */
         <div className="movie-card__actions">{/* //AI ASSISTED */}
+          <FavouriteButton movie={movie} />
           <WatchedButton movie={movie} />{/* //AI ASSISTED */}
         </div>
       )}
