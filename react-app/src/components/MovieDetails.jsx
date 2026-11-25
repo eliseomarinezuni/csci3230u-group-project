@@ -1,6 +1,7 @@
 import { useId, useLayoutEffect, useRef } from 'react' //AI ASSISTED
 import { createPortal } from 'react-dom' //AI ASSISTED
 import WatchedButton from './WatchedButton.jsx' //AI ASSISTED
+import FavouriteButton from './FavouriteButton.jsx'
 import '../styles/MovieDetails.css' //AI ASSISTED
 
 export default function MovieDetails({ movie, message, onClose }) { //AI ASSISTED
@@ -41,6 +42,7 @@ export default function MovieDetails({ movie, message, onClose }) { //AI ASSISTE
         {movie ? ( //AI ASSISTED
           <>{/* //AI ASSISTED */}
             <p id={descriptionId}>{movie.description?.trim() || 'Description unavailable.'}</p>{/* //AI ASSISTED */}
+            <FavouriteButton movie={movie} />
             <WatchedButton movie={movie} />{/* //AI ASSISTED */}
           </> //AI ASSISTED
         ) : <p id={descriptionId} role="status">{message}</p>}{/* //AI ASSISTED */}
