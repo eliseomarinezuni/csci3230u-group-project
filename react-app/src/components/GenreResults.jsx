@@ -78,7 +78,7 @@ export default function GenreResults({ mediaType, genre, sort }) {
             {showLoadMore && (
                 <button
                     type='button'
-                    className='genre-load-more'
+                    className='genre-btn genre-load-more'
                     disabled={loading}
                     onClick={() => setPage(page + 1)}
                 >
