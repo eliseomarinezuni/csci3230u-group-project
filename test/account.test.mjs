@@ -97,5 +97,6 @@ test('favourite movies can be saved for accounts that predate the list', async (
   assert.equal(saved.status, 200)
   const { account } = await saved.json()
   assert.deepEqual(account.favouriteMovies.map(({ id }) => id), [27205])
+  assert.equal(account.favouriteMovies[0].watchedOn, undefined)
   assert.deepEqual(account.watchedMovies, [])
 })

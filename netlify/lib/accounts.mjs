@@ -184,7 +184,7 @@ export async function saveMovieStatus(store, username, { list, movie, enabled })
 
   // Update favouriteMovies for the account
   else if (list === 'favouriteMovies') {
-    const entry = enabled ? { ...cleanMovie(movie), watchedOn: new Date().toISOString().slice(0, 10) } : null
+    const entry = enabled ? cleanMovie(movie) : null
 
     for (let attempt = 0; attempt < 4; attempt++) {
       const current = await store.getWithMetadata(username, { type: 'json' })
