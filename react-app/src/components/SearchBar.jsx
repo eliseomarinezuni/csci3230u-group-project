@@ -1,19 +1,20 @@
 import { useId, useState } from 'react'
 import { useNavigate } from 'react-router' //AI ASSISTED
-import { getSearchPath } from '../data/searchMovies.js' //AI ASSISTED
+import { getSearchPath, hasSearchFilters } from '../data/searchMovies.js' // AI-assisted - see AI-USAGE.md #7
 import '../styles/Search.css'
 
 // 'nav' for compact search bar, 'home' for homepage search bar.
-export default function SearchBar({ initialQuery = '', variant = 'nav' }) {
+// AI-assisted - see AI-USAGE.md #7: `filters` are the Search page's current filters, kept on a new search
+export default function SearchBar({ initialQuery = '', variant = 'nav', filters }) {
   const [query, setQuery] = useState(initialQuery)
   const inputId = useId()
   const navigate = useNavigate() //AI ASSISTED
 
   function handleSubmit(event) {
     event.preventDefault()
-    if (!query.trim()) return
+    if (!query.trim() && !(filters && hasSearchFilters(filters))) return // AI-assisted - see AI-USAGE.md #7
 
-    navigate(getSearchPath(query)) //AI ASSISTED
+    navigate(getSearchPath(query, filters)) // AI-assisted - see AI-USAGE.md #7
   }
 
   return (

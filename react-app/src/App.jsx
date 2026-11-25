@@ -11,7 +11,7 @@ import Search from './pages/Search.jsx'
 import Account from './pages/Account.jsx' // AI-assisted - see AI-USAGE.md #3
 import MoviePage from './pages/MoviePage.jsx' //AI ASSISTED
 import TvPage from './pages/TvPage.jsx' // AI-assisted - see AI-USAGE.md #6
-import { getSearchQuery } from './data/searchMovies.js'
+import { getSearchFilters, getSearchQuery } from './data/searchMovies.js' // AI-assisted - see AI-USAGE.md #7
 
 const pageTitles = {
   home: 'Notflix - Home',
@@ -34,6 +34,7 @@ export default function App() {
   const section = pageLocation.pathname.split('/')[1] //AI ASSISTED
   const page = Object.hasOwn(pageTitles, section) ? section : 'home' //AI ASSISTED
   const searchQuery = page === 'search' ? getSearchQuery(pageLocation.search) : '' //AI ASSISTED
+  const searchFilters = page === 'search' ? getSearchFilters(pageLocation.search) : undefined // AI-assisted - see AI-USAGE.md #7
 
   useEffect(() => {
     document.title = isMovieRoute ? pageTitles.movie : pageTitles[page] //AI ASSISTED
@@ -45,7 +46,7 @@ export default function App() {
 
   return (
     <WatchedMoviesProvider>{/* //AI ASSISTED */}
-      <Header page={isMovieRoute && !background ? 'movie' : page} searchQuery={searchQuery} />{/* //AI ASSISTED */}
+      <Header page={isMovieRoute && !background ? 'movie' : page} searchQuery={searchQuery} searchFilters={searchFilters} />{/* AI-assisted - see AI-USAGE.md #7 */}
 
       <Routes location={pageLocation}>{/* //AI ASSISTED */}
         <Route path="/" element={<Home />} />{/* //AI ASSISTED */}
@@ -56,7 +57,7 @@ export default function App() {
         <Route path="/genre" element={<Navigate to="/genre/movie/all" replace />} />
         <Route path="/genre/:mediaType/:genreSlug" element={<Genre />} />
 
-        <Route path="/search" element={<Search query={searchQuery} />} />{/* //AI ASSISTED */}
+        <Route path="/search" element={<Search query={searchQuery} search={pageLocation.search} />} />{/* AI-assisted - see AI-USAGE.md #7 */}
         {/* AI-assisted - see AI-USAGE.md #3 */}{/* //AI ASSISTED */}
         <Route path="/login" element={<Account key="login" mode="login" />} />{/* //AI ASSISTED */}
         <Route path="/signup" element={<Account key="signup" mode="signup" />} />{/* //AI ASSISTED */}
