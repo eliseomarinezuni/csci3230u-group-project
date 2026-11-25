@@ -37,16 +37,15 @@ export default function FavouriteButton({ movie }) { //AI ASSISTED
     <>{/* //AI ASSISTED */}
       <button /* //AI ASSISTED */
         type="button" /* //AI ASSISTED */
-        className="watched-toggle" /* //AI ASSISTED */
+        className="favourite-toggle" /* //AI ASSISTED */
         aria-label={`Favourited: ${movie.title}`} /* //AI ASSISTED */
         aria-pressed={isFavourited} /* //AI ASSISTED */
         aria-haspopup={isFavourited ? 'dialog' : undefined} /* //AI ASSISTED */
-        title={isFavourited ? 'Remove from Favourited' : 'Mark as favourited'} /* //AI ASSISTED */
+        title={isFavourited ? 'Remove from Favourites' : 'Mark as Favourite'} /* //AI ASSISTED */
         disabled={loading || pending} /* AI-assisted - see AI-USAGE.md #3 */
         onClick={handleClick} /* //AI ASSISTED */
       >{/* //AI ASSISTED */}
-        <span className="watched-toggle__icon" aria-hidden="true">{isFavourited ? '✓' : '+'}</span>{/* //AI ASSISTED */}
-        Favourite{/* //AI ASSISTED */}
+        <span className="favourite-toggle__icon" aria-hidden="true">{isFavourited ? '★' : '☆'}</span>{/* //AI ASSISTED */}
       </button>{/* //AI ASSISTED */}
       {confirmingRemoval && createPortal( //AI ASSISTED
         <dialog /* //AI ASSISTED */
@@ -55,7 +54,7 @@ export default function FavouriteButton({ movie }) { //AI ASSISTED
           aria-labelledby={titleId} /* //AI ASSISTED */
           onClose={handleConfirmationClose} /* //AI ASSISTED */
         >{/* //AI ASSISTED */}
-          <h2 id={titleId}>Remove “{movie.title}” from Favourited?</h2>{/* //AI ASSISTED */}
+          <h2 id={titleId}>Remove “{movie.title}” from Favourites?</h2>{/* //AI ASSISTED */}
           <form method="dialog" className="watched-confirmation__actions">{/* //AI ASSISTED */}
             <button value="keep">Keep movie</button>{/* //AI ASSISTED */}
             <button value="remove" className="watched-confirmation__remove">Remove</button>{/* //AI ASSISTED */}

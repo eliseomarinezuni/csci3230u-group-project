@@ -39,15 +39,47 @@
 }
 
 .movie-card__rating {
-  color: #f5c518;
+  color: var(--accent-gold);
   font-weight: bold;
 }
 
 .movie-card__actions { /* //AI ASSISTED */
   display: flex; /* //AI ASSISTED */
-  justify-content: flex-end; /* //AI ASSISTED */
+  justify-content: space-between;
+  align-items: center;
   padding: 0.75rem 1rem; /* //AI ASSISTED */
   border-top: 1px solid var(--surface-hover); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.favourite-toggle[aria-pressed="true"] { /* //AI ASSISTED */
+  border-color: color-mix(in srgb, var(--accent-gold) 42%, transparent); /* //AI ASSISTED */
+  background: color-mix(in srgb, var(--accent-gold) 11%, var(--surface-color)); /* //AI ASSISTED */
+  color: var(--accent-gold); /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.favourite-toggle { /* //AI ASSISTED */
+  display: inline-flex; /* //AI ASSISTED */
+  min-height: 2.75rem; /* //AI ASSISTED */
+  align-items: center; /* //AI ASSISTED */
+  gap: 0.45rem; /* //AI ASSISTED */
+  padding: 0.35rem 0.8rem 0.35rem 0.55rem; /* //AI ASSISTED */
+  border: 1px solid var(--surface-hover); /* //AI ASSISTED */
+  border-radius: 999px; /* //AI ASSISTED */
+  background: var(--surface-hover); /* //AI ASSISTED */
+  color: var(--text-color); /* //AI ASSISTED */
+  font: inherit; /* //AI ASSISTED */
+  font-size: 0.875rem; /* //AI ASSISTED */
+  font-weight: 600; /* //AI ASSISTED */
+  line-height: 1; /* //AI ASSISTED */
+  cursor: pointer; /* //AI ASSISTED */
+} /* //AI ASSISTED */
+
+.favourite-toggle__icon { /* //AI ASSISTED */
+  display: grid; /* //AI ASSISTED */
+  width: 1.4rem; /* //AI ASSISTED */
+  height: 1.4rem; /* //AI ASSISTED */
+  place-items: center; /* //AI ASSISTED */
+  font-size: 1rem; /* //AI ASSISTED */
 } /* //AI ASSISTED */
 
 .watched-toggle { /* //AI ASSISTED */
@@ -92,6 +124,7 @@
 } /* //AI ASSISTED */
 
 .watched-toggle:focus-visible, /* //AI ASSISTED */
+
 .watched-confirmation button:focus-visible { /* //AI ASSISTED */
   outline: 2px solid var(--text-color); /* //AI ASSISTED */
   outline-offset: 2px; /* //AI ASSISTED */
