@@ -58,11 +58,32 @@ Pages can import the shared helper without handling credentials:
 ```js
 import { searchTmdbMovies } from '../data/tmdb.js' 
 
-const movies = await searchTmdbMovies('Inception')
+const { movies } = await searchTmdbMovies('Inception')
+const { movies: nolan, director } = await searchTmdbMovies('', {
+  filters: { director: 'Christopher Nolan', yearFrom: '2005', minRating: '8', sort: 'rating' },
+})
 ```
 
 Each result includes `id`, `title`, `description`, `releaseDate`, `poster`, `rating`,
 and `genreIds`. Release dates, posters, and ratings can be `null`.
+
+#### Search filters
+
+The title is optional when at least one filter is set. All filters are optional:
+
+| Parameter | Example | Meaning |
+| --------- | ------- | ------- |
+| `q` | `q=batman` | Title to search for |
+| `director` | `director=greta+gerwig` | Only movies this person directed |
+| `yearFrom`, `yearTo` | `yearFrom=1990&yearTo=1999` | Release year range (inclusive) |
+| `minRating` | `minRating=7.5` | TMDB rating of at least this; any decimal from 0 to 10 |
+| `genre` | `genre=878` | TMDB movie genre ID |
+| `sort` | `sort=rating` | `relevance` (default), `rating` (highest first), `lowest-rated`, `newest`, or `oldest` |
+
+The Search page keeps the same parameters in its own URL (for example
+`/search?q=batman&yearFrom=2000&sort=rating`), so filtered searches can be shared and
+survive a refresh. A director search also returns `director: { id, name }`, or
+`director: null` if no one matched.
 
 To test the function locally, run `npx netlify-cli dev` from the project root and use
 the URL it prints. Use a linked Netlify project with the variable available to local
