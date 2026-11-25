@@ -52,3 +52,23 @@
 .genre-page .movie-card__rating {
   padding-bottom: 1rem;
 }
+
+.genre-page .genre-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.genre-page .genre-controls select {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid #555;
+  border-radius: var(--border-radius-sm);
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+}
+
+.genre-page .genre-load-more {
+  margin-top: 2rem;
+}

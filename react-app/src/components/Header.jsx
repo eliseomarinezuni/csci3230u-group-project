@@ -2,7 +2,7 @@ import { Link } from 'react-router' //AI ASSISTED
 import SearchBar from './SearchBar.jsx'
 import { useWatchedMovies } from './WatchedMoviesContext.jsx' // AI-assisted - see AI-USAGE.md #3
 
-export default function Header({ page, searchQuery }) {
+export default function Header({ page, searchQuery, searchFilters }) { // AI-assisted - see AI-USAGE.md #7
   const { account, loading, pending, error, submit } = useWatchedMovies() // AI-assisted - see AI-USAGE.md #3
   const onAccountPage = page === 'login' || page === 'signup'
   return (
@@ -65,7 +65,8 @@ export default function Header({ page, searchQuery }) {
           </ul>
         </nav>
 
-        <SearchBar key={searchQuery} initialQuery={searchQuery} />
+        {/* AI-assisted - see AI-USAGE.md #7: on the Search page, a new title keeps the chosen filters */}
+        <SearchBar key={searchQuery} initialQuery={searchQuery} filters={searchFilters} />
         {/* AI-assisted - see AI-USAGE.md #3 */}
         {account ? (
           <div className="account-nav">

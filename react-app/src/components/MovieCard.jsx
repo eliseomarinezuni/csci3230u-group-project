@@ -13,6 +13,7 @@ function formatWatchedDate(value) { //AI ASSISTED
 export default function MovieCard({ movie }) {
   const location = useLocation() //AI ASSISTED
   const tmdbId = movie.tmdbId ?? movie.id //AI ASSISTED
+  const isTv = movie.mediaType === 'tv' //AI-assisted - see AI-USAGE.md #6 (TV shows open /tv/:id)
   const poster = movie.poster && <img src={movie.poster} alt="" /> //AI ASSISTED
   const movieInfo = ( //AI ASSISTED
     <>{/* //AI ASSISTED */}
@@ -27,7 +28,7 @@ export default function MovieCard({ movie }) {
   return (
     <div className="movie-card" data-genre={movie.genres.join(' ')}>
       <Link /* //AI ASSISTED */
-        to={`/movies/${tmdbId}`} /* //AI ASSISTED */
+        to={isTv ? `/tv/${tmdbId}` : `/movies/${tmdbId}`} /* AI-assisted - see AI-USAGE.md #6 */
         state={{ background: location }} /* //AI ASSISTED */
         className="movie-card__toggle"
         aria-haspopup="dialog" /* //AI ASSISTED */
@@ -50,10 +51,12 @@ export default function MovieCard({ movie }) {
           </> //AI ASSISTED
         )}{/* //AI ASSISTED */}
       </Link>{/* //AI ASSISTED */}
-      <div className="movie-card__actions">{/* //AI ASSISTED */}
-        <FavouriteButton movie={movie} />
-        <WatchedButton movie={movie} />{/* //AI ASSISTED */}
-      </div>{/* //AI ASSISTED */}
+      {!isTv && ( /* AI-assisted - see AI-USAGE.md #6: Watched is for movies only */
+        <div className="movie-card__actions">{/* //AI ASSISTED */}
+          <FavouriteButton movie={movie} />
+          <WatchedButton movie={movie} />{/* //AI ASSISTED */}
+        </div>
+      )}
     </div>
   )
 }

@@ -42,8 +42,7 @@ export default function MovieDetails({ movie, message, onClose }) { //AI ASSISTE
         {movie ? ( //AI ASSISTED
           <>{/* //AI ASSISTED */}
             <p id={descriptionId}>{movie.description?.trim() || 'Description unavailable.'}</p>{/* //AI ASSISTED */}
-            <FavouriteButton movie={movie} />
-            <WatchedButton movie={movie} />{/* //AI ASSISTED */}
+            {movie.mediaType !== 'tv' && <WatchedButton movie={movie} /> && <FavouriteButton movie={movie} />}{/* AI-assisted - see AI-USAGE.md #6 */}
           </> //AI ASSISTED
         ) : <p id={descriptionId} role="status">{message}</p>}{/* //AI ASSISTED */}
       </div>{/* //AI ASSISTED */}

@@ -1,14 +1,15 @@
-
-export default function GenreFilter({genres, selected, onSelect}){
+export default function GenreFilter({genres, selected, onSelect, label}){
     return (
-        <div className="genre-buttons">
+        <div className="genre-buttons" role="group" aria-label={label}>
             {genres.map((genre) => ( //making 1 button per genre 
                 <button
-                    key = {genre}
-                    className = {genre === selected ? 'genre-btn active' : 'genre-btn'} //giving class if active
-                    onClick={() => onSelect(genre)}
+                    key = {genre.slug}
+                    type = "button"
+                    className = {genre.slug === selected ? 'genre-btn active' : 'genre-btn'} //giving class if active
+                    aria-pressed = {genre.slug === selected} //screen readers announce which one is on
+                    onClick={() => onSelect(genre.slug)}
                     >
-                        {genre}
+                        {genre.name}
                 </button>
             ))}
         </div>

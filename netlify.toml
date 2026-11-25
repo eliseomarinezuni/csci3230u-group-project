@@ -7,6 +7,18 @@
   to = "/.netlify/functions/tmdb-search" # //AI ASSISTED
   status = 200 # //AI ASSISTED
 
+# AI-assisted - see AI-USAGE.md #6
+[[redirects]]
+  from = "/api/genre"
+  to = "/.netlify/functions/tmdb-genre"
+  status = 200
+
+# AI-assisted - see AI-USAGE.md #6
+[[redirects]]
+  from = "/api/tv/:id"
+  to = "/.netlify/functions/tmdb-tv/:id"
+  status = 200
+
 # AI-assisted - see AI-USAGE.md #3
 [[redirects]]
   from = "/api/movies/recommendations"

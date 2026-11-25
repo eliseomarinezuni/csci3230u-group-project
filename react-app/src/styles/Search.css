@@ -130,3 +130,200 @@
         padding: 0.55em 1em;
     }
 }
+
+/* ============================================
+   Search Filters
+   AI-assisted - see AI-USAGE.md #7
+   ============================================ */
+.search-hint {
+    margin: -0.75rem 0 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.search-hint a {
+    color: var(--text-color);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.search-hint a:hover {
+    color: var(--accent-color);
+}
+
+.search-filters {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background-color: var(--surface-color);
+    border: 1px solid #2c2c44;
+    border-radius: var(--border-radius);
+}
+
+.search-filters__heading {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+}
+
+.search-filters__fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1rem;
+}
+
+.search-filters__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.search-filters__field--wide {
+    grid-column: span 2;
+}
+
+.search-filters__field > label,
+.search-filters__field > legend,
+.search-sort label {
+    padding: 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* A fieldset's legend can't sit in the flex layout, so lay the year inputs out in a grid */
+.search-filters__years {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0.4rem;
+}
+
+.search-filters__years legend {
+    margin-bottom: 0.4rem;
+}
+
+.search-filters input,
+.search-filters select,
+.search-sort select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid #3a3a52;
+    border-radius: var(--border-radius-sm);
+    font: inherit;
+    font-size: 0.95rem;
+}
+
+.search-filters input::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+.search-filters input:focus-visible,
+.search-filters select:focus-visible,
+.search-sort select:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 1px;
+    border-color: var(--accent-color);
+}
+
+.search-filters input[aria-invalid="true"] {
+    border-color: var(--accent-color);
+}
+
+.search-filters__error {
+    margin: 0.85rem 0 0;
+    color: #ff6b72;
+    font-size: 0.9rem;
+}
+
+.search-filters__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.1rem;
+}
+
+.search-filters__apply,
+.search-filters__clear {
+    min-height: 2.5rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
+}
+
+.search-filters__apply {
+    border: 1px solid var(--accent-color);
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.search-filters__apply:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+}
+
+.search-filters__clear {
+    border: 1px solid #555;
+    background: transparent;
+    color: var(--text-color);
+}
+
+.search-filters__clear:hover:not(:disabled) {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.search-filters__apply:disabled,
+.search-filters__clear:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.search-filters__apply:focus-visible,
+.search-filters__clear:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 2px;
+}
+
+.search-results-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-results-bar .section-subtitle {
+    margin: 0;
+}
+
+.search-sort {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.search-sort select {
+    width: auto;
+}
+
+@media (max-width: 30rem) {
+    .search-filters {
+        padding: 1rem;
+    }
+
+    .search-filters__field--wide {
+        grid-column: auto;
+    }
+}
