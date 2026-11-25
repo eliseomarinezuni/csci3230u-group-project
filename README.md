@@ -2,6 +2,8 @@
 ## Team Information
 **Team Name:** Notflix
 
+**Netlify Domain** https://csci3230u-group-project.netlify.app/
+
 **Team Members:** 
 | Name | Role/Interest |
 | ---- | ------------- |
