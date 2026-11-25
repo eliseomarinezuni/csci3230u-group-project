@@ -197,3 +197,19 @@ Also drop a marker where the code lives: `// AI-assisted - see AI-USAGE.md #<n>`
   ```
 
 - **What it produced & what I changed:** The AI added shareable movie URLs using React Router and a Netlify Function that fetches details by TMDB ID. It reused the existing pop-up for card clicks, added a standalone view for direct links, and configured a Netlify fallback for refreshes. I pulled the latest team changes before implementation and kept the generated code as-is. All eight automated tests passed, and direct links and refreshes were tested locally with mocked TMDB data.
+
+### #6 - Genre Page 
+- **Date:** 2026-11-24
+- **Member:** Julia Pajaro 
+- **Tool / model:** Claude 
+- **Files:** `netlify.toml`, `netlify/lib/tmdb.mjs`, `netlify/functions/tmdb-genre.mjs` (new), `netlify/functions/tmdb-tv.mjs` (new), `react-app/src/App.jsx`, `react-app/src/pages/Genre.jsx`, `react-app/src/pages/TvPage.jsx` (new), `react-app/src/components/GenreFilter.jsx`, `react-app/src/components/GenreResults.jsx` (new), `react-app/src/components/MovieCard.jsx`, `react-app/src/components/MovieDetails.jsx`, `react-app/src/data/genres.js` (new), `react-app/src/styles/Genre.css`, `test/genre.test.mjs` (new)
+
+-  **Prompt (verbatim):**
+  ```text
+ Give me the code to implement TMDB into the genre page and help me make a filter button where the user can choose to look through movies or tv shows (+ copied and pasted the rubric and criteria)
+  ```
+
+- **What it produced & what I changed:** 
+  The AI replaced the genre page's hardcoded data with information from TMBD. The AI also helped me improve the filter options by adding a seperate button for movies/tv shows and a 'sort by' option. The AI also added a local storage option which I did not add, everything else was added.  
+
+---
