@@ -41,7 +41,8 @@ export default async function genreTitles(request) {
   //Build the TMDB address, e.g. https://api.themoviedb.org/3/discover/tv?sort_by=...
   const url = new URL(`https://api.themoviedb.org/3/discover/${type}`)
   url.searchParams.set('sort_by', sorts[sort])
-  const minVotes = type === 'movie' ? '1000' : '300'
+ let minVotes = type === 'movie' ? '1000' : '300'
+  if (sort === 'top-rated') minVotes = type === 'movie' ? '5000' : '1000'
   url.searchParams.set('vote_count.gte', minVotes)
   url.searchParams.set('include_adult', 'false') //skipping movies with adult titles, presentation purpose
   url.searchParams.set('page', page)
